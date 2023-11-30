@@ -66,3 +66,48 @@ Truth table:
 | 1        | 0        | 1      |
 | 0        | 1        | 1      |
 | 1        | 1        | 1      |
+
+**NOT Gate**
+
+![Not Gate Made From A Transistor]("NOT Gate Made From A Transistor")
+
+The NOT Gate, also known as an inverter, will invert the input. This means if there is no power, there will be a power output, and if there is a power input, there will be no power output. Here is the truth table (Note: There is only one input)
+
+| Switch | Output |
+|:------:|:------:|
+| 0      | 1      |
+| 1      | 0      |
+
+These basic logic gates are used to form more complicated logic gates, such as the XOR (pronounces Ex-Or), NOR, and NAND. Here are their Truth tables
+
+**XOR:** Exclusive OR, only 1 input can be on for there to be an output
+
+| Switch A | Switch B | Output |
+|:--------:|:--------:|:------:|
+| 0        | 0        | 0      |
+| 1        | 0        | 1      |
+| 0        | 1        | 1      |
+| 1        | 1        | 0      |
+
+**NOR:** Inverted OR, either or both inputs being on will turn off the gate
+
+| Switch A | Switch B | Output |
+|:--------:|:--------:|:------:|
+| 0        | 0        | 1      |
+| 1        | 0        | 0      |
+| 0        | 1        | 0      |
+| 1        | 1        | 0      |
+
+**NAND:** Inverted AND, Both inputs must be on for the gate to turn off
+
+| Switch A | Switch B | Output |
+|:--------:|:--------:|:------:|
+| 0        | 0        | 1      |
+| 1        | 0        | 1      |
+| 0        | 1        | 1      |
+| 1        | 1        | 0      |
+
+These gates, made from transistors, are the building blocks of every CPU. A good online software to start making your own logic boards is [simulator.io](https://simulator.io). I love using this logic gate simulator due to it being easy to learn how to use it (I would highly recommend checking out their [sample circuits](https://simulator.io/samples)). 2 Important notes about simulator.io:
+
+1. Unfortunatly, it's impossible to make private boards only you can see, so if you want to make private boards, I would suggest using [Logigator](https://logigator.com/), which allows you to export your logic boards to project files you can save and use later, therefore making your work private
+2. You can't use individual transistors in this simulator, only the logic gates and other integrated circuits (ICs) provided to you
