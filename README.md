@@ -20,6 +20,8 @@ This is the basics of how a CPU works, but if you want to know more, I would hig
 
 ## Let's get started
 
+### Section 1: Logic Gates
+
 All CPUs at their heart are made up of one thing, the transistor
 
 ![Transistor](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0559d359aa6f8ee89d8a11bc57689e114e27c1d1/Transistor.png "Transistor")
@@ -37,3 +39,14 @@ Anyways, the reason why transistors are 98% of the whole CPU, is because their b
 **AND Gate**
 
 ![AND Gate Made From Transistors](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/32e6f8b74aee126594da21240b047f10e3d3fffe/AND%20Gate.png "AND Gate Made From Transistors")
+
+To find out what the 4 possible combinations of inputs from the switches do, we use truth tables, which tell whether a switch is on or off by using a 0 for on and 1 for off
+
+| Switch A | Switch B | Output |
+|:--------:|:--------:|:------:|
+| 0        | 0        | 0      |
+| 1        | 0        | 0      |
+| 0        | 1        | 0      |
+| 1        | 1        | 1      |
+
+This shows that the AND Gate will not turn on unless both of the switches are one, hence, the name
