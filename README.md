@@ -29,7 +29,9 @@ All CPUs at their heart are made up of one thing, the transistor
 All these marvels of engineering are is simple switches. As you can see above, the Transistor has 3 legs or wires comming out of it, a base, collector, and emitter.
 
 **Base:** If a small amout of power/electricity is applied to this leg, the transistor turns on, and lets any current coming into the collector to flow out of the emitter
+
 **Collector:** This is the transistor's input. If the base is on, but there is no electricity coming from the collector, there will be no output through the emitter
+
 **Emitter:** This is the transistor's output. The only way to get output from a transistor is to have electricity flowing to the base, and the collector. Think of the base as a key, and the collector as the lock, and the emitter like the unlocked door. If there is a key, but no lock to use it on, the door won't open. If there is a lock but no key, the door also won't open. If there is a lock and a key, the door can be unlocked and opened.
 
 While this might seem simple and useless, I'm about to explain why this invention is such a breakthrough, aside from it being it to operate at near the speed of light and being so simple that it can be manufactures to be so small, you need a microscope to see it. Seriously, the millions and even billions of transistors that make up a CPU, are only a few ATOMS wide! Isn't that incredible?
