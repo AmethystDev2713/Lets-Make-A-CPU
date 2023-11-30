@@ -1,6 +1,14 @@
 # Lets Make A CPU - by AmethystDev2713
 ### Copyright Nov. 30, 2023 AmethystDev2713. All rights reserves, this ebook may not be copied, distributed, or used to make deriative works and similar without a certificate of permission by the copyright holder, AmethystDev2713
 
+## Table of contents
+
+| Section Name              | What we cover                                            |
+|:-------------------------:|:--------------------------------------------------------:|
+| Overview                  | The basics of computers and CPUs                         |
+| Section 1: Logic Gates    | Transistors and Logic Gates: The building blocks of CPUs |
+| Section 2: Areas of a CPU | What is the Control Unit, ALU, and Registers?            |
+
 ## Overview
 
 If you're anything like me, you are curious about the computer's inner workings. One of the most powerful and important components is called the Centeral Processing Unit, or CPU. It's basically the brain of the computer. As StoryBots puts it, a computer/CPU is 3 simple steps: Input, Processing, Output.
@@ -110,4 +118,20 @@ These basic logic gates are used to form more complicated logic gates, such as t
 These gates, made from transistors, are the building blocks of every CPU. A good online software to start making your own logic boards is [simulator.io](https://simulator.io). I love using this logic gate simulator due to it being easy to learn how to use it (I would highly recommend checking out their [sample circuits](https://simulator.io/samples)). 2 Important notes about simulator.io:
 
 1. Unfortunatly, it's impossible to make private boards only you can see, so if you want to make private boards, I would suggest using [Logigator](https://logigator.com/), which allows you to export your logic boards to project files you can save and use later, therefore making your work private
-2. You can't use individual transistors in this simulator, only the logic gates and other integrated circuits (ICs) provided to you
+2. You can't use individual transistors in this simulator, only the logic gates and other integrated circuits (ICs) provided
+
+### Section 2: Areas of a CPU
+
+With out new knowledge of transistors and logic gates, we can talk about the 3 basic areas of a CPU, the Control Unit, ALU, and Registers
+
+**Control Unit:** This is the brain of the CPU, which tells the ALU and Registers to do. It's job is to process most instructions, control registers, and work with the ALU. The control unit can process all instructions except for arthematic and comparision instructions. Those two types of instructions are processed by the ALU.
+
+**ALU (Arthematic Logic Unit):** This area of the CPU basically does math and inequality instructions
+
+**Registers:** This are little storage spaces which store a byte or a few bytes of data that the CPU needs to access repetitivly and quickly
+
+The video by In One Lesson also goes into depth on how each of these use. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
+
+### Section 3: An intro to Binary and Assembly
+
+Before you run away from the computer screaming, we won't be using x86 or 64-Bit assembly, they're WAAY to complicated for our purposes. Instead, we will be using the very famous 6502 8-Bit microprocessor (pronounced six-five-oh-two or sixtey five-oh-two, I personally prefer the first pronounciation), made by MOS Technology, and used in famous computers of its era, such as the Apple II and Commodore 64. Computers work by using a number system called Binary. It's a system where values/data/instructions are represented in 1s and 0s. Binary is the language of computers, and in the case of the 6502 CPU, being an 8-Bit CPU, it's binary system uses 8 places where there can be a 1 or 0, which are called bits. By today's standards, 8 bits is equal to 1 byte. Here is an example of an 8-Bit number: 01011110. For demonstration purposes, let's say that 01011110 is a number. How do we know what it is in decimal (the number system us humans use, which is 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, etc) ? People have come up with a smart strategy to convert binary into decimal, but if you don't want to do the calculations manually, which is perfectly fine, you can use an online calculator.
