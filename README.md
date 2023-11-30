@@ -50,3 +50,17 @@ To find out what the 4 possible combinations of inputs from the switches do, we 
 | 1        | 1        | 1      |
 
 This shows that the AND Gate will not turn on unless both of the switches are one, hence, the name
+
+**OR Gate**
+
+![OR Gate Made From Transistors](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/b62be35fb1ee1d3c8f313a1d8cc9ca5d5b42c69b/Images/OR%20Gate.png "OR Gate Made From Transistors")
+
+In this case, both of the collectors are powered, so when either, or even both of the inputs are powered, there will be an output.
+
+Truth table:
+| Switch A | Switch B | Output |
+|:--------:|:--------:|:------:|
+| 0        | 0        | 0      |
+| 1        | 0        | 1      |
+| 0        | 1        | 1      |
+| 1        | 1        | 1      |
