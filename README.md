@@ -220,4 +220,8 @@ Ga
 ![Example 2](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/e6705f49d7c0250421aceaa68b8912839c262321/Images/Instruction%20Locker%20-%202.png "Example 2")
 ![Example 3](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/15ba8e410ca47981865b401a35e422d562d0758b/Images/Instruction%20Locker%20-%203.png "Example 3")
 
-In the examples above, you can see that only the specific binary combination to activate an instruction is inputted, only that instruction processor (the group of logic gates that do the instruction you want) will turn on, and it will lock the others to prevent them from accidentally turning on, until that instruction processor is done processing
+In the examples above, you can see that only the specific binary combination to activate an instruction is inputted, only that instruction processor (the group of logic gates that do the instruction you want) will turn on, and it will lock the others to prevent them from accidentally turning on, until that instruction processor is done processing. For demonstration purposes, each "programmed" instruction with logic gates will turn on an LED to indicate that they are active and lock the other one. In a real CPU, in the place of the LEDs would be more logic gates to do whatever the designer wants the CPU to do.
+
+Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step equation is loading a value into a register. Let's break down how to make a register loading instruction.
+
+This is a register using RS Latches (Reset-Set Latches) which will hold one state depending on whether the reset or set input is powered, even if it's temporary.
