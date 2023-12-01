@@ -3,13 +3,14 @@
 
 ## Table of contents
 
-| Section Name                              | What we cover                                                               |
-|:-----------------------------------------:|:---------------------------------------------------------------------------:|
-| Overview                                  | The basics of computers and CPUs                                            |
-| Section 1: Logic Gates                    | Transistors and Logic Gates: The building blocks of CPUs                    |
-| Section 2: Areas of a CPU                 | What is the Control Unit, ALU, and Registers?                               |
-| Section 3: Intro to binary                | What is binary and how does it work?                                        |
-| Section 4: Assembly & The Instruction Set | What is the instruction set and what does it do?                            |
+| Section Name                              | What we cover                                                                                              |
+|:-----------------------------------------:|:----------------------------------------------------------------------------------------------------------:|
+| Overview                                  | The basics of computers and CPUs                                                                           |
+| Section 1: Logic Gates                    | Transistors and Logic Gates: The building blocks of CPUs                                                   |
+| Section 2: Areas of a CPU                 | What is the Control Unit, ALU, and Registers?                                                              |
+| Section 3: Intro to binary                | What is binary and how does it work?                                                                       |
+| Section 4: Assembly & The Instruction Set | What is the instruction set and what does it do?                                                           |
+| Section 5: Constructing out CPU           | What are the first steps to build out CPU? How do we avoid errors when processing multi-step instructions? |
 
 **Note:** This is a very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. Check every so often for updates if you'd like
 
