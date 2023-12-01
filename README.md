@@ -134,7 +134,7 @@ With out new knowledge of transistors and logic gates, we can talk about the 3 b
 
 **Registers:** This are little storage spaces which store a byte or a few bytes of data that the CPU needs to access repetitivly and quickly
 
-The video by In One Lesson also goes into depth on how each of these use. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
+The video by In One Lesson also goes into depth on how each of these are used in a CPU. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
 
 ### Section 3: An intro to Binary
 
