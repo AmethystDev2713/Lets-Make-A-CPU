@@ -225,3 +225,7 @@ In the examples above, you can see that only the specific binary combination to 
 Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step equation is loading a value into a register. Let's break down how to make a register loading instruction.
 
 This is a register using RS Latches (Reset-Set Latches) which will hold one state depending on whether the reset or set input is powered, even if it's temporary.
+
+![Register Mechanism](about:blank "Register Mechanism")
+
+Of course, this isn't the full picture, it's just a simple demonstration on how a register work. To combine the activation and register loading, we need a logic circuit which will lock the other instruction processors until we are ready to move on. D-Latches/Flip Flops are a really nice circuit which can do that. Unfortunatly, they are sort of a complicated concept. You can check out simulator.io's D-Latch Sample Circuit to see it in action. Their Diode Matrix/Traffic Light Sample Circuit will be the best thing to look at in order to understand D-Latch counters. A counter is a circuit which will count up, in the sense of a program counter. In our case, it will tick twice before giving an output, signaling the end of out two-step instruction.
