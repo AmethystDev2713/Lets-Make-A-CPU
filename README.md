@@ -3,11 +3,12 @@
 
 ## Table of contents
 
-| Section Name              | What we cover                                            |
-|:-------------------------:|:--------------------------------------------------------:|
-| Overview                  | The basics of computers and CPUs                         |
-| Section 1: Logic Gates    | Transistors and Logic Gates: The building blocks of CPUs |
-| Section 2: Areas of a CPU | What is the Control Unit, ALU, and Registers?            |
+| Section Name                            | What we cover                                                               |
+|:---------------------------------------:|:---------------------------------------------------------------------------:|
+| Overview                                | The basics of computers and CPUs                                            |
+| Section 1: Logic Gates                  | Transistors and Logic Gates: The building blocks of CPUs                    |
+| Section 2: Areas of a CPU               | What is the Control Unit, ALU, and Registers?                               |
+| Section 3: Intro to binary and Assembly | What is binary and how does it work? What does it have to do with assembly? |
 
 ## Overview
 
