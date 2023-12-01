@@ -82,7 +82,7 @@ Truth table:
 
 **NOT Gate**
 
-![Not Gate Made From A Transistor]("NOT Gate Made From A Transistor")
+![Not Gate Made From A Transistor](about:blank "NOT Gate Made From A Transistor")
 
 The NOT Gate, also known as an inverter, will invert the input. This means if there is no power, there will be a power output, and if there is a power input, there will be no power output. Here is the truth table (Note: There is only one input)
 
