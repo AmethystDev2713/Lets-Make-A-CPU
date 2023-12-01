@@ -3,12 +3,15 @@
 
 ## Table of contents
 
-| Section Name                            | What we cover                                                               |
-|:---------------------------------------:|:---------------------------------------------------------------------------:|
-| Overview                                | The basics of computers and CPUs                                            |
-| Section 1: Logic Gates                  | Transistors and Logic Gates: The building blocks of CPUs                    |
-| Section 2: Areas of a CPU               | What is the Control Unit, ALU, and Registers?                               |
-| Section 3: Intro to binary and Assembly | What is binary and how does it work? What does it have to do with assembly? |
+| Section Name                              | What we cover                                                               |
+|:-----------------------------------------:|:---------------------------------------------------------------------------:|
+| Overview                                  | The basics of computers and CPUs                                            |
+| Section 1: Logic Gates                    | Transistors and Logic Gates: The building blocks of CPUs                    |
+| Section 2: Areas of a CPU                 | What is the Control Unit, ALU, and Registers?                               |
+| Section 3: Intro to binary                | What is binary and how does it work?                                        |
+| Section 4: Assembly & The Instruction Set | What is the instruction set and what does it do?                            |
+
+**Note:** This is a very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. Check every so often for updates if you'd like
 
 ## Overview
 
@@ -133,9 +136,11 @@ With out new knowledge of transistors and logic gates, we can talk about the 3 b
 
 The video by In One Lesson also goes into depth on how each of these use. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
 
-### Section 3: An intro to Binary and Assembly
+### Section 3: An intro to Binary
 
-Before you run away from the computer screaming, we won't be using x86 or 64-Bit assembly, they're WAAY to complicated for our purposes. Instead, we will be using the very famous 6502 8-Bit microprocessor (pronounced six-five-oh-two or sixtey five-oh-two, I personally prefer the first pronounciation), made by MOS Technology, and used in famous computers of its era, such as the Apple II and Commodore 64. Computers work by using a number system called Binary. It's a system where values/data/instructions are represented in 1s and 0s. Binary is the language of computers, and in the case of the 6502 CPU, being an 8-Bit CPU, it's binary system uses 8 places where there can be a 1 or 0, which are called bits. By today's standards, 8 bits is equal to 1 byte. Here is an example of an 8-Bit number: 01011110. For demonstration purposes, let's say that 01011110 is a number. How do we know what it is in decimal (the number system us humans use, which is 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, etc) ? People have come up with a smart strategy to convert binary into decimal, but if you don't want to do the calculations manually, which is perfectly fine, you can use an online calculator. If you would like to do the calculations by hand, here is a guide:
+Before you run away from the computer screaming upon hearing "assembly", we won't be using x86 or 64-Bit assembly, they're WAAY to complicated for our purposes. Instead, we will be using the very famous 6502 8-Bit microprocessor (pronounced six-five-oh-two or sixtey five-oh-two, I personally prefer the first pronounciation), made by MOS Technology, and used in famous computers of its era, such as the Apple II and Commodore 64, as our example CPU for this section.
+
+Computers work by using a number system called Binary. It's a system where values/data/instructions are represented in 1s and 0s. Binary is the language of computers, and in the case of the 6502 CPU, being an 8-Bit CPU, it's binary system uses 8 places where there can be a 1 or 0, which are called bits. By today's standards, 8 bits is equal to 1 byte. Here is an example of an 8-Bit number: 01011110. For demonstration purposes, let's say that 01011110 is a number. How do we know what it is in decimal (the number system us humans use, which is 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, etc) ? People have come up with a smart strategy to convert binary into decimal, but if you don't want to do the calculations manually, which is perfectly fine, you can use an online calculator. If you would like to do the calculations by hand, here is a guide:
 
 1. An 8-Bit Binary can represent values from 0 to 255. For Example, 00000001 is one, 00000010 is 2, 00000011 is 3, and so on. Here's the key concept: 2-Bit Binary can represent numbers 0 - 3, so the first bit, which is the rightmost bit, represents 1, and the left most bit represents 2. With 3-Bit, you can see values 0-7, so from **Right to left**, each bit represents 1, 2, and 4. For each bit from right to left, the value it represents is double the last. Here's a diagram to convert a random binary number to decimal
 
@@ -156,4 +161,51 @@ What this is showing is if the bit at a given place is 1, it takes the value und
 
 2. The same principle applies to larger binary numbers, like 16-Bit Binary Numbers.
 
-The bit at place 2 is set to 1, so one of out factors is 2. Same thing with place 16, so add 16 + 2, and the result of 000
+The bit at place 2 is set to 1, so one of out factors is 2. Same thing with place 16, so add 16 + 2, and the result of 00010010 converted to decimal is 18. Learning to convert binary to decimal can be helpful when developing your CPU since it's a crucial part of creating your instruction set
+
+### Section 4: Assembly & The Instruction Set
+
+Just like numbers are represented in binary, you can "program" your CPU, in a way, to accept certain combinations of binary bits as an instruction. The 6502 CPU's datasheet, and other CPU's datasheets (basically their manuel, **please** whatever you do, don't look up the Intel manuels. They will horrify and confuse you beyond the capacity of your brain), tell you what of its 50ish instructions are in hexadecimal, which is another numbering system, like binary, used in computing, where each bit has 16 possible combinations instead of 2, like with binary. But we won't get in depth with that since you're better off using binary when making a simple CPU. If you ever become smart enough and design your own 16-Bit, 32-Bit, or even 64-Bit CPU, which would be a SUPER impressive feat, you would rather write a hexadecimal number like 09D7 than a binary number like 0101010100111111, which is obviously very long. Anyways, here are the steps to designing your instruction set:
+
+- Planning.
+   - What is your CPU going to be like? Is it going to be super simple (like my [3-Bit CPU](https://simulator.io/board/C2geCb4c2j), if you can even call it a CPU) and only adds and subtracts numbers? Is it going to be designed for use in mechanical contraptions, like a loom machine? Maybe for robots? Perhaps for a computer, which is the most common use for a CPU. Depending on the use, you can conclude what kind of instructions it should have
+   - What will its binary range be? Will it be 4-Bit (I would recommend this as your minimum if you are making a CPU to actually do something useful) like the world's first CPU, the Intel 4004? 8-Bit, like the 6502 or Z80? 16-bit, like the 65816 or Motorola 68000 series? The more funtionality you want, the higher your binary range should be.
+- Drafting
+   - Your CPU should, at minimum, have the following types of fundamental instructions:
+      - Load instructions, which can write values to registers or read data from RAM or ROM and save it to a register
+      - Compare instructions, which are basically inequality operations. These can be used in things as simple as a number guessing game to an OS (Operating System, such as Windows, Macintosh/Mac, Linux, etc) for your CPU
+      - Input Instructions, which can take the user's input for something like a number guessing game
+      - Output instructions, which can be as simple as turning on or off a set of LEDs or as complicated as outputting what's going on in a video game to the screen
+   - Aside from those 4, you can decide whatever else you want your computer to do! It's going to be your design, after all
+   - Create an instruction set table, such as this one:
+
+| Instruction name | Binary form | Usage                                                                                      |
+|:-----------------|:-----------:|:-------------------------------------------------------------------------------------------|
+| LDA              | 0001        | Load a byte of data into register A                                                        |
+| LDB              | 0010        | Load a byte of data into register B                                                        |
+| LDC              | 0011        | Load a byte of data into register C                                                        |
+| CMPE             | 0100        | Check if the next 2 binary numbers following are equal to each other                       |
+| CMPN             | 0101        | Check if the next 2 binary numbers following are not equal to each other                   |
+| CMPG             | 0100        | Check if the next binary number following is greater than the next binary number           |
+| CMPL             | 0101        | Check if the next binary number following is less than the next binary number              |
+| IN               | 0110        | Get Input from the input device, saves to register C                                       |
+| OUT              | 0111        | Send output to an output device                                                            |
+| ADD              | 1000        | Adds the next 2 binary numbers, saves to register C                                        |
+| SUB              | 1001        | Subtracts the next 2 binary numbers, saves to register C                                   |
+| JMP              | 1010        | Jump to a line in code file                                                                |
+| JMPX             | 1011        | Jump to a line in code file if the previous comparision resulted in "true" as its result   |
+| RGA              | 1100        | Keyword: Used to use the value of register A with other instructions                       |
+| RGB              | 1101        | Keyword: Used to use the value of register B with other instructions                       |
+| RGC              | 1110        | Keyword: Used to use the value of register C with other instructions                       |
+
+The left most column is the instruction in assembly, which is a special class of programming language called machine language, or machine code, because these instructions carry out operations exactly like the CPU does and grant the user full access to the CPU. This is generally only used by experienced computer workers, but in our case, where we are making our own CPU and assembly code for it, we don't need a professional or highly experienced user to do the work, since it's your very own variation of assembly, designed for your CPU. The middle column shows the instruction in binary, which is how your CPU will read it, and the right most column, well, explains it. As simple as these seem, you can already make simple programs, and maybe even find uses nobody ever knew about when using mutiple different instructions together! Here's a code example for a number guessing game using the assembly table above:
+
+1. `LDA 1001`
+2. `IN`
+3. `CMPE RGA RGC`
+4. `JMPX 7`
+5. `OUT Guess again`
+6. `JMPX 2`
+7. `OUT Correct! Good Job!`
+
+Here is the code explanation: Load the correct number into register A, which is 1001 in binary, or 9 in decimal. Get the user's guess with the IN instruction. Since it saves to register C, compare the user's input (Register A) with the user's guess (Register C). If they are the same (meaning the user has guessed the correct number), skip the "guess again" message and jump to the "Correct! Good Job!" message to tell the user they guessed the correct number. If the 2 numbers are not equal, then the JMPX instruction will be ignored, since the user didn't guess the correct number, and will then show the "guess again" message and jump to the IN instruction to get the user's next guess.
