@@ -232,3 +232,9 @@ This is a register using RS Latches (Reset-Set Latches) which will hold one stat
 Of course, this isn't the full picture, it's just a simple demonstration on how a register work. To combine the activation and register loading, we need a logic circuit which will lock the other instruction processors until we are ready to move on. D-Latches/Flip Flops are a really nice circuit which can do that. Unfortunatly, they are sort of a complicated concept. You can check out simulator.io's D-Latch Sample Circuit to see it in action. Their Diode Matrix/Traffic Light Sample Circuit will be the best thing to look at in order to understand D-Latch counters. A counter is a circuit which will count up, in the sense of a program counter. In our case, it will tick twice before giving an output, signaling the end of out two-step instruction. For a three step instruction, you would make a circuit using 2 D-Latches and an AND gate.
 
 ![3-Step Counter](about:blank "3-Step Counter")
+
+Surprisingly, D-Latch Circuits don't work in Logigator, so when I checked out their sample circuits to see how to make a counter with their simulator, I was very, very shocked to see that you can just use half adders, which are a circuit which can add 2, 1-Bit binary numbers. To make a counter using them, simply replace the D-Latches with Half-Adders and change the wiring a bit
+
+![3-Step Counter Using Half Adders](about:blank "3-Step Counter Using Half Adders")
+
+Fortunatly, this design works in both Logigator AND Simulator.io (pun not intended), so you can use which ever design works better/makes more sense to you
