@@ -237,4 +237,4 @@ Surprisingly, D-Latch Circuits don't work in Logigator, so when I checked out th
 
 ![3-Step Counter Using Half Adders](about:blank "3-Step Counter Using Half Adders")
 
-Fortunatly, this design works in both Logigator AND Simulator.io (pun not intended), so you can use which ever design works better/makes more sense to you
+Fortunatly, this design works in both Logigator AND Simulator.io (pun not intended), but there is the problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, so a counter could end up displpaying a completly off-track binary number before displaying the correct one, so be careful when making counter. Rest assured that it is possible to create a set of logic gates that will remove the time delay from the output
