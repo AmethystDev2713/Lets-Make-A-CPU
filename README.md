@@ -223,7 +223,7 @@ This is when logic gates come in. You can arrange all types of logic gates to ma
 
 In the examples above, you can see that only the specific binary combination to activate an instruction is inputted, only that instruction processor (the group of logic gates that do the instruction you want) will turn on, and it will lock the others to prevent them from accidentally turning on, until that instruction processor is done processing. For demonstration purposes, each "programmed" instruction with logic gates will turn on an LED to indicate that they are active and lock the other one. In a real CPU, in the place of the LEDs would be more logic gates to do whatever the designer wants the CPU to do.
 
-Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step equation is loading a value into a register. Let's break down how to make a register loading instruction.
+Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step instruction is loading a value into a register. Let's break down how to make a register loading instruction.
 
 This is a register using RS Latches (Reset-Set Latches) which will hold one state depending on whether the reset or set input is powered, even if it's temporary.
 
