@@ -227,14 +227,18 @@ Let's find out how to make a multi-step instruction that will lock the other ins
 
 This is a register using RS Latches (Reset-Set Latches) which will hold one state depending on whether the reset or set input is powered, even if it's temporary.
 
-![Register Mechanism](about:blank "Register Mechanism")
+![Register Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0313285452e68f102b16071e7b28f23171c2d7dd/Images/Register%20Loading%20Mechanism.gif "Register Mechanism")
 
 Of course, this isn't the full picture, it's just a simple demonstration on how a register work. To combine the activation and register loading, we need a logic circuit which will lock the other instruction processors until we are ready to move on. D-Latches/Flip Flops are a really nice circuit which can do that. Unfortunatly, they are sort of a complicated concept. You can check out simulator.io's D-Latch Sample Circuit to see it in action. Their Diode Matrix/Traffic Light Sample Circuit will be the best thing to look at in order to understand D-Latch counters. A counter is a circuit which will count up, in the sense of a program counter. In our case, it will tick twice before giving an output, signaling the end of out two-step instruction. For a three step instruction, you would make a circuit using 2 D-Latches and an AND gate.
 
-![3-Step Counter](about:blank "3-Step Counter")
+![3-Step Counter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/716e1df2bdd5bc489c1467facbddf73f2902e885/Images/3-Step%20Counter.gif "3-Step Counter")
+
+Just to note, a 4th pulse will be required to reset the counter.
 
 Surprisingly, D-Latch Circuits don't work in Logigator, so when I checked out their sample circuits to see how to make a counter with their simulator, I was very, very shocked to see that you can just use half adders, which are a circuit which can add 2, 1-Bit binary numbers. To make a counter using them, simply replace the D-Latches with Half-Adders and change the wiring a bit
 
-![3-Step Counter Using Half Adders](about:blank "3-Step Counter Using Half Adders")
+![3-Step Counter Using Half Adders](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/64ecfaff2a5dc91221b93574346e0607ac36f22e/Images/3-Step%20Counter%20With%20Half%20Adders.gif "3-Step Counter Using Half Adders")
+
+This design also requires a 4th pulse to reset the counter.
 
 Fortunatly, this design works in both Logigator AND Simulator.io (pun not intended), but there is the problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, so a counter could end up displpaying a completly off-track binary number before displaying the correct one, so be careful when making counter. Rest assured that it is possible to create a set of logic gates that will remove the time delay from the output
