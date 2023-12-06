@@ -3,15 +3,16 @@
 
 ## Table of contents
 
-| Section Name                                  | What we cover                                                                                                         |
-|:---------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
-| Overview                                      | The basics of computers and CPUs                                                                                      |
-| Section 1: Logic Gates                        | Transistors and Logic Gates: The building blocks of CPUs                                                              |
-| Section 2: Areas of a CPU                     | What is the Control Unit, ALU, and Registers?                                                                         |
-| Section 3: Intro to binary                    | What is binary and how does it work?                                                                                  |
-| Section 4: Assembly & The Instruction Set     | What is the instruction set and what does it do?                                                                      |
-| Section 5: Constructing our CPU               | What are the steps to build our CPU?                                                                                  |
-| 5.1: Register Loading/Multi Step Instructions | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
+| Section Name                                         | What we cover                                                                                                         |
+|:----------------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+| Overview                                             | The basics of computers and CPUs                                                                                      |
+| Section 1: Logic Gates                               | Transistors and Logic Gates: The building blocks of CPUs                                                              |
+| Section 2: Areas of a CPU                            | What is the Control Unit, ALU, and Registers?                                                                         |
+| Section 3: Intro to binary                           | What is binary and how does it work?                                                                                  |
+| Section 4: Assembly & The Instruction Set            | What is the instruction set and what does it do?                                                                      |
+| Section 5: Constructing our CPU                      | What are the steps to build our CPU?                                                                                  |
+| 5.1: Register Loading/Multi Step Instructions        | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
+| 5.2: 3-Step Instructions/Add + Subtract Instructions | How do we make a 3-step instruction processor? How do CPUs add + subtract binary numbers?                             |
 
 **Note:** This is a very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. Check every so often for updates if you'd like
 
@@ -292,3 +293,5 @@ The output wire of the Instruction Done Checker Runs to the Locker for the count
 ![2nd Instruction Resetter](about:blank "2nd Instruction Resetter")
 
 Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
+
+#### 5.2: 3-Step Instructions/Add + Subtract Instructions
