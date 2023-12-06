@@ -3,14 +3,15 @@
 
 ## Table of contents
 
-| Section Name                              | What we cover                                                                                              |
-|:-----------------------------------------:|:----------------------------------------------------------------------------------------------------------:|
-| Overview                                  | The basics of computers and CPUs                                                                           |
-| Section 1: Logic Gates                    | Transistors and Logic Gates: The building blocks of CPUs                                                   |
-| Section 2: Areas of a CPU                 | What is the Control Unit, ALU, and Registers?                                                              |
-| Section 3: Intro to binary                | What is binary and how does it work?                                                                       |
-| Section 4: Assembly & The Instruction Set | What is the instruction set and what does it do?                                                           |
-| Section 5: Constructing our CPU           | What are the first steps to build our CPU? How do we avoid errors when processing multi-step instructions? |
+| Section Name                                  | What we cover                                                                                                         |
+|:---------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------:|
+| Overview                                      | The basics of computers and CPUs                                                                                      |
+| Section 1: Logic Gates                        | Transistors and Logic Gates: The building blocks of CPUs                                                              |
+| Section 2: Areas of a CPU                     | What is the Control Unit, ALU, and Registers?                                                                         |
+| Section 3: Intro to binary                    | What is binary and how does it work?                                                                                  |
+| Section 4: Assembly & The Instruction Set     | What is the instruction set and what does it do?                                                                      |
+| Section 5: Constructing our CPU               | What are the steps to build our CPU?                                                                                  |
+| 5.1: Register Loading/Multi Step Instructions | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
 
 **Note:** This is a very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. Check every so often for updates if you'd like
 
@@ -229,6 +230,13 @@ A more efficient way to do this is by creating a locking mechanism on the input 
 ![Example 4.2](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/366036111810a3c14afd44bdee1d90eff294b841/Images/Locker%20v2%20-%202.png "Example 4.2")
 
 In this example, when the binary code for an instruction is inputted, the instruction locks the data input to prevent it from going beyong the instruction processor by using 4 AND gates with one inverted input (the circle on one of its inputs represents a NOT gate). When the instruction is activated, it turns on the inverted inputs, which actually turns off that input since it's inverted. That way, data can't go through the locker. This makes it easier to prevent accidentally activating other instructions rather than wires going all over the place to lock other instructions.
+
+2. Set up (a lot) of logic gates to do what I want the CPU to do, whether it's a register, ALU, output functions, etc.
+3. Test the CPU. Just like programming in a language like C++ (my personal favorite), you have to test your code for bugs. Similarly, you have to test your logic circuit (set of logic gates which work together as a unit to perform a task) to make sure it's working the way it should be.
+
+You can think of the process as this: Plan (this is what section 4 was about), Build, and Test, just as if you were building a robot, RC Car/Airplane, making a Lego set from your imagination, etc.
+
+#### 5.1 Register Loading/Multi Step Instructions
 
 Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step instruction is loading a value into a register. Let's break down how to make a register loading instruction.
 
