@@ -283,3 +283,12 @@ This AND Gate with an inverted input will check if the first input, which activa
 ![Buffering AND Gate](about:blank "Buffering AND Gate")
 
 The instruction processor needs a way to tell when input is done. The section of logic gates here does exactly that
+
+![Instruction Done Checker](about:blank "Instruction Done Checker")
+
+The output wire of the Instruction Done Checker Runs to the Locker for the counter. When It's locked, the counter will output 1, or it will turn on, which resets the flag to signal the instruction is done. The Checker's output wire also runs to some logic gates which reset the counter, so future instructions don't confuse that instruction processor into thinking its instruction is still running.
+
+![1st Instruction Resetter](about:blank "1st Instruction Resetter")
+![2nd Instruction Resetter](about:blank "2nd Instruction Resetter")
+
+Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
