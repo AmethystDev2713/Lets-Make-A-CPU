@@ -226,7 +226,9 @@ In the examples above, you can see that only the specific binary combination to 
 A more efficient way to do this is by creating a locking mechanism on the input wires themselves, like so:
 
 ![Example 4.1](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/63301493128e56ba87f931da5747314d21c1dd71/Images/Locker%20v2%20-%201.png "Example 4.1")
-![Example 4.2](about:blank "Example 4.2")
+![Example 4.2](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/366036111810a3c14afd44bdee1d90eff294b841/Images/Locker%20v2%20-%202.png "Example 4.2")
+
+In this example, when the binary code for an instruction is inputted, the instruction locks the data input to prevent it from going beyong the instruction processor by using 4 AND gates with one inverted input (the circle on one of its inputs represents a NOT gate). When the instruction is activated, it turns on the inverted inputs, which actually turns off that input since it's inverted. That way, data can't go through the locker. This makes it easier to prevent accidentally activating other instructions rather than wires going all over the place to lock other instructions.
 
 Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step instruction is loading a value into a register. Let's break down how to make a register loading instruction.
 
@@ -249,3 +251,27 @@ This design also requires a 4th pulse to reset the counter.
 Fortunatly, this design works in both Logigator AND Simulator.io (pun not intended), but there is the problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, so a counter could end up displpaying a completly off-track binary number before displaying the correct one, so be careful when making counter. Rest assured that it is possible to create a set of logic gates that will remove the time delay from the output
 
 Since instructions like these take multiple inputs/steps, we need to make sure we aren't accidentally triggering other instruction processors while one instruction is still running.
+
+Now, we have 3 mechanisms, the counter, register, and the locker. But how does the register get input?
+
+First, the register needs to be reset on each instruction so the previous value is cleared and the new value/data can be saved. To do this, we add wires going to the data input wires, and another locker to make sure we are only saving data when the instruction is activated. To prevent the bit which activated the instruction from being saved, we use an AND gate with an inverted input which will allow data saving once there is no data coming in. This is where the entire instruction processor comes together
+
+![Full Register Loading Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/f9a83c461a50afb5aaf9266b3f49e803093154ee/Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
+
+![Animation of full register loading mechanism](about:blank "Animation of full register loading mechanism")
+
+I know, it's absolute madness, so lets break it down.
+
+We start with an AND Gate which checks to see if the binary code to activate the instruction (0001) is being inputted. If so, activate the instruction processor (All the logic gates to the right of it)
+
+![Binary checker](about:blank "Binary checker")
+
+Then, a RS latch acts like a flag, which is somewhat like a traffic light, saying "It's time for a second input!", and also turns on the D-Latch/counter's clock wire. The counter will not give an output until it's clock wire turns off (the clock wire is represented by a (>) symbol). In the mean time, once the first input is gone, the register lock will turn on, unlocking the wires to save a binary number to the register
+
+![Register locker + register](about:blank "Register locker + register")
+
+This AND Gate with an inverted input will check if the first input, which activated the instruction processor, is gone. Only then will it unlock the register lock.
+
+![Buffering AND Gate](about:blank "Buffering AND Gate")
+
+The instruction processor needs a way to tell when input is done. The section of logic gates here does exactly that
