@@ -215,13 +215,18 @@ Here is the code explanation: Load the correct number into register A, which is 
 
 This is when logic gates come in. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see a logic part for each of the 4 instructions. This is generally how I construct CPUs:
 
-1. Create a part to check if a certain binary combination has been inputted. This can usually be done with an AND gate with as many input as the binary range is. For example, If you look at the first instruction processor on my example CPU, you can see some of the inputs are inverted to ensure that only a very specific combination of binary will allow the instruction to start processing. Another important part of this step is to create a locking mechanism, so that the CPU doesn't get confused on which bytes are for each instruction. Here's a diagram on Simulator.io:
+1. Create a part to check if a certain binary combination has been inputted. This can usually be done with an AND gate with as many inputs as the binary range is. For example, If you look at the first instruction processor on my example CPU, you can see some of the inputs are inverted to ensure that only a very specific combination of binary will allow the instruction to start processing. Another important part of this step is to create a locking mechanism, so that the CPU doesn't get confused on which bytes are for each instruction. Here's a diagram on Simulator.io:
 
 ![Example 1](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ac62c398d547b5c68f0f59da2c91745f5faa5528/Images/Instruction%20Locker%20-%201.png "Example 1")
 ![Example 2](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/e6705f49d7c0250421aceaa68b8912839c262321/Images/Instruction%20Locker%20-%202.png "Example 2")
 ![Example 3](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/15ba8e410ca47981865b401a35e422d562d0758b/Images/Instruction%20Locker%20-%203.png "Example 3")
 
 In the examples above, you can see that only the specific binary combination to activate an instruction is inputted, only that instruction processor (the group of logic gates that do the instruction you want) will turn on, and it will lock the others to prevent them from accidentally turning on, until that instruction processor is done processing. For demonstration purposes, each "programmed" instruction with logic gates will turn on an LED to indicate that they are active and lock the other one. In a real CPU, in the place of the LEDs would be more logic gates to do whatever the designer wants the CPU to do.
+
+A more efficient way to do this is by creating a locking mechanism on the input wires themselves, like so:
+
+![Example 4.1](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/63301493128e56ba87f931da5747314d21c1dd71/Images/Locker%20v2%20-%201.png "Example 4.1")
+![Example 4.2](about:blank "Example 4.2")
 
 Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step instruction is loading a value into a register. Let's break down how to make a register loading instruction.
 
@@ -242,3 +247,5 @@ Surprisingly, D-Latch Circuits don't work in Logigator, so when I checked out th
 This design also requires a 4th pulse to reset the counter.
 
 Fortunatly, this design works in both Logigator AND Simulator.io (pun not intended), but there is the problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, so a counter could end up displpaying a completly off-track binary number before displaying the correct one, so be careful when making counter. Rest assured that it is possible to create a set of logic gates that will remove the time delay from the output
+
+Since instructions like these take multiple inputs/steps, we need to make sure we aren't accidentally triggering other instruction processors while one instruction is still running.
