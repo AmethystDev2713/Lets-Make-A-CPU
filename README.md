@@ -276,7 +276,9 @@ First, the register needs to be reset on each instruction so the previous value 
 
 I know, it's absolute madness, so lets break it down.
 
-We start with an AND Gate which checks to see if the binary code to activate the instruction (0001) is being inputted. If so, activate the instruction processor (All the logic gates to the right of it)
+![Instruction checker + locker](about:blank "Instruction checker + locker")
+
+We start with an AND Gate which checks to see if the binary code to activate the instruction (0001) is being inputted. If so, activate the instruction processor (All the logic gates to the right of it). There is a second AND gate after that so it can be locked by other multi-step instruction processers. Remember, only the first instruction processor (if it's multi step) can effectivley lock the input wires. If the second or ones after tried to use lockers on the input wires themselves, it would end up not locking the instruction processors before it, and therefore there will be a risk for malfunction.
 
 ![Binary checker](about:blank "Binary checker")
 
