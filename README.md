@@ -225,13 +225,6 @@ This is when logic gates come in. You can arrange all types of logic gates to ma
 
 In the examples above, you can see that only the specific binary combination to activate an instruction is inputted, only that instruction processor (the group of logic gates that do the instruction you want) will turn on, and it will lock the others to prevent them from accidentally turning on, until that instruction processor is done processing. For demonstration purposes, each "programmed" instruction with logic gates will turn on an LED to indicate that they are active and lock the other one. In a real CPU, in the place of the LEDs would be more logic gates to do whatever the designer wants the CPU to do.
 
-A more efficient way to do this is by creating a locking mechanism on the input wires themselves, like so:
-
-![Example 4.1](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/63301493128e56ba87f931da5747314d21c1dd71/Images/Locker%20v2%20-%201.png "Example 4.1")
-![Example 4.2](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/366036111810a3c14afd44bdee1d90eff294b841/Images/Locker%20v2%20-%202.png "Example 4.2")
-
-In this example, when the binary code for an instruction is inputted, the instruction locks the data input to prevent it from going beyong the instruction processor by using 4 AND gates with one inverted input (the circle on one of its inputs represents a NOT gate). When the instruction is activated, it turns on the inverted inputs, which actually turns off that input since it's inverted. That way, data can't go through the locker. This makes it easier to prevent accidentally activating other instructions rather than wires going all over the place to lock other instructions.
-
 2. Set up (a lot) of logic gates to do what I want the CPU to do, whether it's a register, ALU, output functions, etc.
 3. Test the CPU. Just like programming in a language like C++ (my personal favorite), you have to test your code for bugs. Similarly, you have to test your logic circuit (set of logic gates which work together as a unit to perform a task) to make sure it's working the way it should be.
 
@@ -277,7 +270,7 @@ Now, we have 3 mechanisms, the counter, register, and the locker. But how does t
 
 First, the register needs to be reset on each instruction so the previous value is cleared and the new value/data can be saved. To do this, we add wires going to the data input wires, and another locker to make sure we are only saving data when the instruction is activated. To prevent the bit which activated the instruction from being saved, we use an AND gate with an inverted input which will allow data saving once there is no data coming in. This is where the entire instruction processor comes together
 
-![Full Register Loading Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/f9a83c461a50afb5aaf9266b3f49e803093154ee/Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
+![Full Register Loading Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/01d95ba56f7005a026f7fcb85f1457740ab8bd98/Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
 
 ![Animation of full register loading mechanism](about:blank "Animation of full register loading mechanism")
 
