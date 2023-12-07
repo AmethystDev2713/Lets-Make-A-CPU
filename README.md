@@ -14,7 +14,7 @@
 | 5.1: Register Loading/Multi Step Instructions        | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
 | 5.2: 3-Step Instructions/Add + Subtract Instructions | How do we make a 3-step instruction processor? How do CPUs add + subtract binary numbers?                             |
 
-**Note:** This is a very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. Check every so often for updates if you'd like
+**Note:** This is a very, very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. My ebook is updated 5/7 days a week unless said so otherwise. Most edits occur on weekdays between 8:00 AM and 5:00 PM EST
 
 ## Overview
 
