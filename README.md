@@ -57,7 +57,7 @@ Anyways, the reason why transistors are 98% of the whole CPU, is because their b
 
 ![AND Gate Made From Transistors](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/32e6f8b74aee126594da21240b047f10e3d3fffe/AND%20Gate.png "AND Gate Made From Transistors")
 
-To find out what the 4 possible combinations of inputs from the switches do, we use truth tables, which tell whether a switch is on or off by using a 0 for on and 1 for off
+To find out what the 4 possible combinations of inputs from the switches do, we use truth tables, which tell whether a switch is on or off by using a 0 for off and 1 for on
 
 | Switch A | Switch B | Output |
 |:--------:|:--------:|:------:|
