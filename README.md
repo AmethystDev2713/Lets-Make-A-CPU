@@ -295,3 +295,15 @@ The output wire of the Instruction Done Checker Runs to the Locker for the count
 Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
 
 #### 5.2: 3-Step Instructions/Add + Subtract Instructions
+
+One of the functions of a CPU is to carry out arithmetic functions, mainly addition, subtraction, and comparisions. These functions are carried out by the CPU's ALU.
+
+Most Logic Simulators come equipped with the Half Adder and Full Adder.
+
+![Adders](https://github.com/AmethystDev2713/Lets-Make-A-CPU/assets/145722599/61fe142c-dcfe-4464-a1a9-cc10393e271c "Adders")
+
+These are the building blocks of a binary adder. They have 2 or 3 inputs, a sum, and a carry. This [video by In One Lesson](https://youtu.be/VBDoT8o4q00?t=411) nicely teaches how half and full adders work.
+
+To make a 4-Bit Adder, you use a half adder, and 3 full adders, with the carry-out wires going to the next adder's carry-in input. This is what a 4-Bit adder looks like:
+
+![4-Bit Binary Adder](https://github.com/AmethystDev2713/Lets-Make-A-CPU/assets/145722599/bc841d68-8617-49e0-96a2-8d97e30f2564 "4-Bit Binary Adder")
