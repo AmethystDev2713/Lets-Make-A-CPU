@@ -84,7 +84,7 @@ Truth table:
 
 **NOT Gate**
 
-![Not Gate Made From A Transistor](about:blank "NOT Gate Made From A Transistor")
+![Not Gate Made From A Transistor](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "NOT Gate Made From A Transistor")
 
 The NOT Gate, also known as an inverter, will invert the input. This means if there is no power, there will be a power output, and if there is a power input, there will be no power output. Here is the truth table (Note: There is only one input)
 
@@ -274,32 +274,32 @@ First, the register needs to be reset on each instruction so the previous value 
 
 ![Full Register Loading Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/01d95ba56f7005a026f7fcb85f1457740ab8bd98/Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
 
-![Animation of full register loading mechanism](about:blank "Animation of full register loading mechanism")
+![Animation of full register loading mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Animation of full register loading mechanism")
 
 I know, it's absolute madness, so lets break it down.
 
-![Instruction checker + locker](about:blank "Instruction checker + locker")
+![Instruction checker + locker](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Instruction checker + locker")
 
 We start with an AND Gate which checks to see if the binary code to activate the instruction (0001) is being inputted. If so, activate the instruction processor (All the logic gates to the right of it). There is a second AND gate after that so it can be locked by other multi-step instruction processers. Remember, only the first instruction processor (if it's multi step) can effectivley lock the input wires. If the second or ones after tried to use lockers on the input wires themselves, it would end up not locking the instruction processors before it, and therefore there will be a risk for malfunction.
 
-![Binary checker](about:blank "Binary checker")
+![Binary checker](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Binary checker")
 
 Then, a RS latch acts like a flag, which is somewhat like a traffic light, saying "It's time for a second input!", and also turns on the D-Latch/counter's clock wire. The counter will not give an output until it's clock wire turns off (the clock wire is represented by a (>) symbol). In the mean time, once the first input is gone, the register lock will turn on, unlocking the wires to save a binary number to the register
 
-![Register locker + register](about:blank "Register locker + register")
+![Register locker + register](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Register locker + register")
 
 This AND Gate with an inverted input will check if the first input, which activated the instruction processor, is gone. Only then will it unlock the register lock.
 
-![Buffering AND Gate](about:blank "Buffering AND Gate")
+![Buffering AND Gate](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Buffering AND Gate")
 
 The instruction processor needs a way to tell when input is done. The section of logic gates here does exactly that
 
-![Instruction Done Checker](about:blank "Instruction Done Checker")
+![Instruction Done Checker](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Instruction Done Checker")
 
 The output wire of the Instruction Done Checker Runs to the Locker for the counter. When It's locked, the counter will output 1, or it will turn on, which resets the flag to signal the instruction is done. The Checker's output wire also runs to some logic gates which reset the counter, so future instructions don't confuse that instruction processor into thinking its instruction is still running.
 
-![1st Instruction Resetter](about:blank "1st Instruction Resetter")
-![2nd Instruction Resetter](about:blank "2nd Instruction Resetter")
+![1st Instruction Resetter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "1st Instruction Resetter")
+![2nd Instruction Resetter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "2nd Instruction Resetter")
 
 Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
 
@@ -331,8 +331,8 @@ Let's set up a 3-register system, and adder, and a subtractor (which is basicall
 
 First, let's set up 3 registers with the mechanism we made before. Make sure to change which inputs of the first AND gate are inverted, so that all of them don't activate at once. Let's also move all the registers next to each other for organization purposes, and add a locker to the output of each register so we can use only the 2 we want to.
 
-![3-Registers](about:blank "3-Registers")
+![3-Registers](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "3-Registers")
 
 At the bottom, let's add an instruction processor with a 4-Bit Adder + Subtractor. This will be part of out ALU. To make sure we can tell where the ALU is as a unit, let's put the circuitry next to the registers
 
-![ALU](about:blank "ALU")
+![ALU](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "ALU")
