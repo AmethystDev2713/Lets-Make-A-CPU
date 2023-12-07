@@ -245,7 +245,19 @@ This is a register using RS Latches (Reset-Set Latches) which will hold one stat
 
 ![Register Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0313285452e68f102b16071e7b28f23171c2d7dd/Images/Register%20Loading%20Mechanism.gif "Register Mechanism")
 
-Of course, this isn't the full picture, it's just a simple demonstration on how a register work. To combine the activation and register loading, we need a logic circuit which will lock the other instruction processors until we are ready to move on. D-Latches/Flip Flops are a really nice circuit which can do that. Unfortunatly, they are sort of a complicated concept. You can check out simulator.io's D-Latch Sample Circuit to see it in action. Their Diode Matrix/Traffic Light Sample Circuit will be the best thing to look at in order to understand D-Latch counters. A counter is a circuit which will count up, in the sense of a program counter. In our case, it will tick twice before giving an output, signaling the end of out two-step instruction. For a three step instruction, you would make a circuit using 2 D-Latches and an AND gate.
+Of course, this isn't the full picture, it's just a simple demonstration on how a register work.
+
+A Register is made up of with 2 - 3 parts:
+
+1. Set
+2. Enable
+3. (usually merged with Set) Reset
+
+When I make a register, I prefer to have all 3 inputs for those functions. The Set Wire will allow a new value to be written to a register, after resetting it, of course. The Enable Wire allows the value of the register to be outputted onto some form of a bus, which is like a highway for cars, where the cars represent the binary data being sent to other components as needed. The Reset wire, which is usually triggered automatically when the set wire is turned on by a switch, clears the value of the register.
+
+![Full Register](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/835470354c518027120c3657ea114d827211dad5/Images/Full%20Register.png "Full Register")
+
+To combine the activation and register loading, we need a logic circuit which will lock the other instruction processors until we are ready to move on. D-Latches/Flip Flops are a really nice circuit which can do that. Unfortunatly, they are sort of a complicated concept. You can check out simulator.io's D-Latch Sample Circuit to see it in action. Their Diode Matrix/Traffic Light Sample Circuit will be the best thing to look at in order to understand D-Latch counters. A counter is a circuit which will count up, in the sense of a program counter. In our case, it will tick twice before giving an output, signaling the end of out two-step instruction. For a three step instruction, you would make a circuit using 2 D-Latches and an AND gate.
 
 ![3-Step Counter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/716e1df2bdd5bc489c1467facbddf73f2902e885/Images/3-Step%20Counter.gif "3-Step Counter")
 
@@ -311,3 +323,19 @@ To make a 4-Bit Adder, you use a half adder, and 3 full adders, with the carry-o
 What's happening here is the carry of each adder is going to the carry-in wire (usually the bottom wire, but I used the top one since the bits are unlabeled) of the next adder, and the lase carry-out wire is acting as an overflow flag, and will block the output of the answer if the answer is greater than the largest number you can make with 4-Bit Binary, which is 15, or 1111. We then have 2 inputs for 2 4-Bit binary numbers, and here's where it might get strange, the first bit of the 1st number goes to the first input of the first adder, and the first number of the *2nd* number goes to the 2nd input of the first adder, and it keeps going in a pattern like that (If you're able to trace the wires to their connections)
 
 Unfortunatly, in most logic simulators, half and full subtractors are not their own component, so we have to make our own. Thankfull, GeeksForGeeks has a design for a [Half Subtractor](https://www.geeksforgeeks.org/half-subtractor-in-digital-logic/) and a [Full Subtractor](https://www.geeksforgeeks.org/full-subtractor-in-digital-logic/) which you can then link up the same way you'd do with a half and full adder. Don't worry about logging in, it likes to annoy you with that popup, but nevertheless it's a good resource for learning about technology
+
+Here's what a 4-Bit Subtractor looks like:
+
+![4-Bit Binary Subtractor](https://github.com/AmethystDev2713/Lets-Make-A-CPU/assets/145722599/b4be8b07-9b36-43f0-9a81-27f3d5b46df3 "4-Bit Binary Subtractor")
+
+Similar to overflow, the subtractor has a flag to indicate that the answer will be negative, and if that's the case, there will be no output, mainly because for whatever reason, 0000 - 0001, which should be negative one, produces an output of 1111, which we don't directly see because of the negative number flag.
+
+Let's set up a 3-register system, and adder, and a subtractor (which is basically what my 3-Bit CPU is, only with 2 register). This is where it's going to get really tricky, so proceed with caution.
+
+First, let's set up 3 registers with the mechanism we made before. Make sure to change which inputs of the first AND gate are inverted, so that all of them don't activate at once. Let's also move all the registers next to each other for organization purposes, and add a locker to the output of each register so we can use only the 2 we want to.
+
+![3-Registers](about:blank "3-Registers")
+
+At the bottom, let's add an instruction processor with a 4-Bit Adder + Subtractor. This will be part of out ALU. To make sure we can tell where the ALU is as a unit, let's put the circuitry next to the registers
+
+![ALU](about:blank "ALU")
