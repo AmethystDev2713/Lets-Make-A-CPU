@@ -329,9 +329,11 @@ Similar to overflow, the subtractor has a flag to indicate that the answer will 
 
 Let's set up a 3-register system, and adder, and a subtractor (which is basically what my 3-Bit CPU is, only with 2 register). This is where it's going to get really tricky, so proceed with caution.
 
-First, let's set up 3 registers with the mechanism we made before. Make sure to change which inputs of the first AND gate are inverted, so that all of them don't activate at once. Let's also move all the registers next to each other for organization purposes, and add a locker to the output of each register so we can use only the 2 we want to.
+First, let's set up 3 registers with the mechanism we made before. Make sure to change which inputs of the first AND gate are inverted, so that all of them don't activate at once. Let's also move all the registers, NOT the instruction processors, just the RS latches, next to each other for organization purposes, and add a locker to the output of each register so we can use only the 2 we want to.
 
 ![3-Registers](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "3-Registers")
+
+Keep in mind that only the first instruction processor can use the AND gates to lock the data wires, all the other ones will use an OR gate with several inputs from different instruction processors whose output is connected to the locker of that specific instruction processor, which comes after the AND gate to see if the specific binary input is being used.
 
 At the bottom, let's add an instruction processor with a 4-Bit Adder + Subtractor. This will be part of out ALU. To make sure we can tell where the ALU is as a unit, let's put the circuitry next to the registers
 
