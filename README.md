@@ -43,7 +43,7 @@ All CPUs at their heart are made up of one thing, the transistor
 
 ![Transistor](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0559d359aa6f8ee89d8a11bc57689e114e27c1d1/Transistor.png "Transistor")
 
-All these marvels of engineering are is simple switches. As you can see above, the Transistor has 3 legs or wires comming out of it, a base, collector, and emitter.
+This is an NPN Transistor. All these marvels of engineering are is simple switches. As you can see above, the Transistor has 3 legs or wires comming out of it, a base, collector, and emitter.
 
 **Base:** If a small amout of power/electricity is applied to this leg, the transistor turns on, and lets any current coming into the collector to flow out of the emitter
 
@@ -86,14 +86,18 @@ Truth table:
 
 **NOT Gate**
 
-![Not Gate Made From A Transistor](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "NOT Gate Made From A Transistor")
+![Not Gate Made From A Transistor](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/a867ccdc301e9108eda8d0835233ab67acc80d0c/Images/NOT%20Gate.png "NOT Gate Made From A Transistor")
 
-The NOT Gate, also known as an inverter, will invert the input. This means if there is no power, there will be a power output, and if there is a power input, there will be no power output. Here is the truth table (Note: There is only one input)
+The NOT Gate, also known as an inverter, will invert the input. The way it works is really wierd, so prepare yourself. Here is the truth table (Note: There is only one input)
 
 | Switch | Output |
 |:------:|:------:|
 | 0      | 1      |
 | 1      | 0      |
+
+When you input power to a transistor (usually from a battery of some sort or a DC Power supply), there are 2 outputs: Positive and Negative. The previous 2 gates (and the NPN Transistor) use positive power to do their work, but since the NOT gate works the opposite way, it uses negative power, and a different transistor, called the PNP Transistor. It's similar to the NPN, but its collecter is its output, and its emitter is its input (where you input negative power) instead of its input. The base is unchanged. Using this mechanism, we can apply negative power to the LED and the PNP Transistor to make them on by default instead of off. Then, when we input negative power to the base of the transistor by using the switch, which is also connected to negative power, the transistor will turn off, also turning the LED off.
+
+Don't worry too much about how the transistors work right now since we will be using logic simulation programs to create our CPU.
 
 These basic logic gates are used to form more complicated logic gates, such as the XOR (pronounces Ex-Or), NOR, and NAND. Here are their Truth tables
 
