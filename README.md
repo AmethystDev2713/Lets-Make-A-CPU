@@ -1,6 +1,8 @@
 # Lets Make A CPU - by AmethystDev2713
 ### Copyright Nov. 30, 2023 AmethystDev2713. All rights reserves, this ebook may not be copied, distributed, or used to make deriative guides/books/ebooks/newspapers/anything similar without a certificate of permission by the copyright holder, AmethystDev2713
 
+Have questions/comments/concerns? Post them [here](https://github.com/AmethystDev2713/Lets-Make-A-CPU/discussions/1)
+
 ## Table of contents
 
 | Section Name                                         | What we cover                                                                                                         |
