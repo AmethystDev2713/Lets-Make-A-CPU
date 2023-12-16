@@ -274,7 +274,7 @@ Now, we have 3 mechanisms, the counter, register, and the locker. But how does t
 
 First, the register needs to be reset on each instruction so the previous value is cleared and the new value/data can be saved. To do this, we add wires going to the data input wires, and another locker to make sure we are only saving data when the instruction is activated. To prevent the bit which activated the instruction from being saved, we use an AND gate with an inverted input which will allow data saving once there is no data coming in. This is where the entire instruction processor comes together
 
-![Full Register Loading Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/01d95ba56f7005a026f7fcb85f1457740ab8bd98/Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
+![Full Register Loading Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0e2b27606ea20d2d8353f3b3c1eca31a04cd1266/Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
 
 ![Animation of full register loading mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/d092f5bdb21ea3c2c3804fe23bfd22e8fe480103/Images/Alt%20Image.png "Animation of full register loading mechanism")
 
