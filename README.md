@@ -278,9 +278,27 @@ First, the register needs to be reset on each instruction so the previous value 
 
 ![Animation of full register loading mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Animation of full register loading mechanism")
 
-I know, it's absolute madness, so lets break it down.
+I know this may look a bit overwhelming, so lets break it down.
 
-(This part is being re-written. Sorry for the inconvinience)
+![Instruction Checker](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Instruction Checker")
+
+We start with an instruction checker, which checks to see if the specific binary number to activate the instruction processor has been inputted. If the specific combination is being inputted, and the instruction checker is not locked, it will give an output.
+
+![Instruction Running Flag](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Instruction Running Flag")
+
+Next, we have the instruction running flag, which will stay on until a number has been inputted, and then the input is turned off.
+
+![Counter Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Counter Mechanism")
+
+After that, we need to be able to tell when the instruction starts, when a number is inputted, and when the input wires turn off. When they do, the counter mechanism will turn on, resetting the flag and counter.
+
+![Register Reset + Load](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Register Reset + Load")
+
+These logic gates are what actually control register loading. When the instruction running flag is on, it will unlock the loading wires and reset the register so a new value can be saved.
+
+![Instruction Processor Lockers](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Instruction Processor Lockers")
+
+These wires allow the instruction processor to lock the input wires and be locked. The one off to the left allows other instruction processors to lock it, and at the bottom is a locker preventing data from going to the second and rest of the instruction processors. **Important:** This mechanism only works for the first instruction processor. For all others, you will need to use a locker wire like the one I showed, which is to the left.
 
 Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
 
