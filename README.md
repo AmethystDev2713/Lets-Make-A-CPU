@@ -18,6 +18,8 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 
 **Note:** This is a very, very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. My ebook is updated 5/7 days a week unless said so otherwise. Most edits occur on weekdays between 8:00 AM and 5:00 PM EST
 
+**Edit status:** Paused
+
 ## Overview
 
 If you're anything like me, you are curious about the computer's inner workings. One of the most powerful and important components is called the Centeral Processing Unit, or CPU. It's basically the brain of the computer. As StoryBots puts it, a computer/CPU is 3 simple steps: Input, Processing, Output.
