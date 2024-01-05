@@ -1,7 +1,11 @@
 # Lets Make A CPU - by AmethystDev2713
-### Copyright Nov. 30, 2023 AmethystDev2713. All rights reserves, this ebook may not be copied, distributed, or used to make deriative guides/books/ebooks/newspapers/anything similar without a certificate of permission by the copyright holder, AmethystDev2713
+### Copyright Nov. 30, 2023 AmethystDev2713. All rights reserves, this ebook may not be copied, distributed, or used to make deriative guides/books/ebooks/newspapers/anything similar without a certificate of permission given by the copyright holder of this work, AmethystDev2713
 
 Have questions/comments/concerns? Post them [here](https://github.com/AmethystDev2713/Lets-Make-A-CPU/discussions/1)
+
+## Important Note before we begin
+
+This is the GitHub version of the ebook. To view other versions, go to the versions folder in the main branch
 
 ## Table of contents
 
@@ -18,7 +22,7 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 
 **Note:** This is a very, very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. My ebook is updated 5/7 days a week unless said so otherwise. Most edits occur on weekdays between 8:00 AM and 5:00 PM EST
 
-**Edit status:** Paused
+**Edit status:** Paused, occasional edits may occur
 
 ## Overview
 
