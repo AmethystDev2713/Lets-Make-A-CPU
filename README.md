@@ -225,7 +225,7 @@ Here is the code explanation: Load the correct number into register A, which is 
 
 ### Section 5: Constructing our CPU
 
-This is when logic gates come in. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see a logic part for each of the 4 instructions. This is generally how I construct CPUs:
+This is when logic gates come in. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see a logic part for each of the 4 instructions. This is generally how I construct CPUs (please keep in mind this approach is NOT how modern CPUs are made, it's just a method I made up which I thought was at least somewhat easy to understand):
 
 1. Create a part to check if a certain binary combination has been inputted. This can usually be done with an AND gate with as many inputs as the binary range is. For example, If you look at the first instruction processor on my example CPU, you can see some of the inputs are inverted to ensure that only a very specific combination of binary will allow the instruction to start processing. Another important part of this step is to create a locking mechanism, so that the CPU doesn't get confused on which bytes are for each instruction. Here's a diagram on Simulator.io:
 
