@@ -244,6 +244,8 @@ In the examples above, you can see that only the specific binary combination to 
 
 You can think of the process as this: Plan (this is what section 4 was about), Build, and Test, just as if you were building a robot, RC Car/Airplane, making a Lego set from your imagination, etc.
 
+You can have many, or few instruction processors, depending on how your instruction set works. You may only need a few if your instructions can process many different functions per single instruction processor, or you may need a lot if each instruction does only 1 function. In short, depending on whether each instruction can do 1 function or multiple, you may need only a few, big processors, or several, small ones.
+
 #### 5.1 Register Loading/Multi Step Instructions
 
 Let's find out how to make a multi-step instruction that will lock the other instructions as needed until it's over. An example of a multi-step instruction is loading a value into a register. Let's break down how to make a register loading instruction.
