@@ -4,4 +4,4 @@ Can be found at the main branch (it's the repo's README document)
 
 # Microsoft Word Version
 
-Commming soon!
+Coming soon!
