@@ -3,10 +3,6 @@
 
 Have questions/comments/concerns? Post them [here](https://github.com/AmethystDev2713/Lets-Make-A-CPU/discussions/1)
 
-## Important Note before we begin
-
-This is the GitHub version of the ebook. To view other versions, go to the versions folder in the main branch
-
 ## Table of contents
 
 | Section Name                                         | What we cover                                                                                                         |
