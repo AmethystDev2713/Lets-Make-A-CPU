@@ -334,7 +334,7 @@ To make a 4-Bit Adder, you use a half adder, and 3 full adders, with the carry-o
 
 ![4-Bit Binary Adder](https://github.com/AmethystDev2713/Lets-Make-A-CPU/assets/145722599/bc841d68-8617-49e0-96a2-8d97e30f2564 "4-Bit Binary Adder")
 
-What's happening here is the carry of each adder is going to the carry-in wire (usually the bottom wire, but I used the top one since the bits are unlabeled) of the next adder, and the lase carry-out wire is acting as an overflow flag, and will block the output of the answer if the answer is greater than the largest number you can make with 4-Bit Binary, which is 15, or 1111. We then have 2 inputs for 2 4-Bit binary numbers, and here's where it might get strange, the first bit of the 1st number goes to the first input of the first adder, and the first number of the *2nd* number goes to the 2nd input of the first adder, and it keeps going in a pattern like that (If you're able to trace the wires to their connections)
+What's happening here is the carry of each adder is going to the carry-in wire (usually the bottom wire, but I used the top one since the bits are unlabeled) of the next adder, and the lase carry-out wire is acting as an overflow flag, and will block the output of the answer if the answer is greater than the largest number you can make with 4-Bit Binary, which is 15, or 1111. We then have 2 inputs for 2, 4-Bit binary numbers, and here's where it might get strange, the first bit of the 1st number goes to the first input of the first adder, and the first number of the *2nd* number goes to the 2nd input of the first adder, and it keeps going in a pattern like that (If you're able to trace the wires to their connections)
 
 Unfortunatly, in most logic simulators, half and full subtractors are not their own component, so we have to make our own. Thankfull, GeeksForGeeks has a design for a [Half Subtractor](https://www.geeksforgeeks.org/half-subtractor-in-digital-logic/) and a [Full Subtractor](https://www.geeksforgeeks.org/full-subtractor-in-digital-logic/) which you can then link up the same way you'd do with a half and full adder. Don't worry about logging in, it likes to annoy you with that popup, but nevertheless it's a good resource for learning about technology
 
@@ -346,7 +346,7 @@ Similar to overflow, the subtractor has a flag to indicate that the answer will 
 
 Let's set up a 3-register system, and adder, and a subtractor (which is basically what my 3-Bit CPU is, only with 2 register). This is where it's going to get really tricky, so proceed with caution.
 
-First, let's set up 3 registers with the mechanism we made before. Make sure to change which inputs of the first AND gate are inverted, so that all of them don't activate at once. Let's also move all the registers, NOT the instruction processors, just the RS latches, next to each other for organization purposes, and add a locker to the output of each register so we can use only the 2 we want to.
+First, let's set up 3 registers with the mechanism we made before. Make sure to change which inputs of the first AND gate are inverted, so that all of them don't activate at once. Let's also move all the registers, NOT the instruction processors, just the RS latches, next to each other for organization and quick access purposes, and add a locker to the output of each register so we can use only the 2 we want to.
 
 ![3-Registers](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "3-Registers")
 
