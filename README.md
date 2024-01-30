@@ -18,7 +18,7 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 
 **Note:** This is a very, very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. My ebook is updated 5/7 days a week unless said so otherwise. Most edits occur on weekdays between 8:00 AM and 5:00 PM EST
 
-**Edit status:** Active
+**Edit status:** Updates are active, but on a different format unavaliable to the public
 
 ## Overview
 
