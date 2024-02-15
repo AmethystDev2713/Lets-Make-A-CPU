@@ -51,7 +51,7 @@ This is an NPN Transistor. All these marvels of engineering are is simple switch
 
 **Collector:** This is the transistor's input. If the base is on, but there is no electricity coming from the collector, there will be no output through the emitter
 
-**Emitter:** This is the transistor's output. The only way to get output from a transistor is to have electricity flowing to the base, and the collector. Think of the base as a key, and the collector as the lock, and the emitter like the unlocked door. If there is a key, but no lock to use it on, the door won't open. If there is a lock but no key, the door also won't open. If there is a lock and a key, the door can be unlocked and opened.
+**Emitter:** This is the transistor's output. The only way to get output from a transistor is to have electricity flowing to the base, and the collector. Think of the base and collector as 2 people, and the emitter like a box which needs 2 people to lift it, signaling an output. If there is a single person, the box can’t be lifted. If both people are there, the box can be lifted, which translates to an output at the emitter of the transistor.
 
 While this might seem simple and useless, I'm about to explain why this invention is such a breakthrough, aside from it being it to operate at near the speed of light and being so simple that it can be manufactures to be so small, you need a microscope to see it. Seriously, the millions and even billions of transistors that make up a CPU, are only a few ATOMS wide! Isn't that incredible?
 
