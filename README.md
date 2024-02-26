@@ -249,6 +249,7 @@ Or reading CPU manuals, which would be 100x worse than looking at those images.
 
 #### 5.1 Register Loading/Multi Step Instructions
 
+There are many types of circuits you can make to carry out different functions, but listing all of them, even just for this CPU, would take ages. But I will show you 2 important types.
 The first type of instruction we are going to make a processor for is register loading instructions. This will show you how registers work and give you an intro to multi-step instructions, which will be very helpful especially if you are making a CPU with a small bit range. Let’s get into it.
 
 This is a register using RS Latches (Reset-Set Latches) which will hold one state depending on whether the reset or set input is powered, even if it's temporary.
