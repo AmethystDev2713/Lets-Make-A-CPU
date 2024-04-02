@@ -351,8 +351,18 @@ First, let's set up 3 registers with the mechanism we made before. Make sure to 
 
 ![3-Registers](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "3-Registers")
 
-Keep in mind that only the first instruction processor can use the AND gates to lock the data wires, all the other ones will use an OR gate with several inputs from different instruction processors whose output is connected to the locker of that specific instruction processor, which comes after the AND gate to see if the specific binary input is being used.
+Keep in mind that only the first instruction processor can use the AND gates to lock the data wires, all the other ones will use an OR gate with several inputs from different instruction processors whose output is connected to the locker of that specific instruction processor, which comes after the AND gate to see if the specific binary input is being used. Here's what I mean:
 
-At the bottom, let's add an instruction processor with a 4-Bit Adder + Subtractor. This will be part of out ALU. To make sure we can tell where the ALU is as a unit, let's put the circuitry next to the registers
+![Instruction Processor Locking System](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Instruction Processor Locking System")
+
+At the bottom, let's add an instruction processor which will tell our ALU to add or subtract 2 numbers. It will need to be able to send 3 outputs to the ALU: The operation (1000 for add and 1001 for subtract), then the first number, and lastly the second number.
 
 ![ALU](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "ALU")
+
+To make our ALU, we sort of have to make a CPU, inside of the one we have right now. If you want, you can have the circuitry next to all the work you’ve done so far, or inside an IC (integrated circuit) chip. However, ICs are only available on Logigator and some other similar programs, but not simulator.io. An IC chip is an electronic circuit manufactured at microscopic scales which are then packaged in a small, black box with metal pins sticking out on its long sides which allow it to communicate with whatever is on the main board. Basically, it’s a pretty small electronic circuit. Just like how our CPU has an input for receiving instructions, an IC chip has pins which are its means of I/O. One pin might be for power, another from data, another for communicating with a graphics chip, etc. When designing large-scale circuits like these, they can reduce the clutter on your circuit. This is what real IC chips would look like:
+
+![Real IC Chips](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/cb9b505e6eb99dabc11e09e5fba37f13b5f7cb80/Images/Real%20IC%20Chips.png "Real IC Chips")
+
+[https://semiengineering.com/what-is-an-integrated-circuit/](https://semiengineering.com/what-is-an-integrated-circuit/)
+
+
