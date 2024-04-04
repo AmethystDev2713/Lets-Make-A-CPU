@@ -384,3 +384,7 @@ Fill out Name and Symbol, and make sure you flip the Share Publicly switch so it
 There will be a tab with the name of your IC chip (for me, it’s just IC Chip). Scroll down in the side bar until you see Input and Output plugs:
 
 ![I/O Plugs](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/002b0e0a0307b4f09057f0d4bda3d73449075728/Images/IC%20IO%20Plugs%20In%20Logigator.png "I/O Plugs")
+
+These are like the buttons you see on the register, giving input, and LEDs giving output, like on the adder & subtractor. When you go back to the main screen, you will see little wires coming out on the left, which are your input plugs, and wires coming out on the right, which are your output plugs. If you want to give your CPU a cleaner overall look, you could put your registers inside IC chips, like so:
+
+![Putting Registers Inside IC Chips](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Putting Registers Inside IC Chips")
