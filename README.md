@@ -367,20 +367,20 @@ To make our ALU, we sort of have to make a CPU, inside of the one we have right 
 
 And in Logigator, they look like this:
 
-![Logigator IC Chips](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "Logigator IC Chips")
+![Logigator IC Chips](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/002b0e0a0307b4f09057f0d4bda3d73449075728/Images/Logigator%20IC%20Chip.png "Logigator IC Chips")
 
 To make an IC, press Alt + N, or click the new component button
 
-![New IC Button](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "New IC Button")
+![New IC Button](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/002b0e0a0307b4f09057f0d4bda3d73449075728/Images/New%20IC%20Chip%20Button%20On%20Logigator.png "New IC Button")
 
 You will then see a screen which looks like this:
 
-![New IC Menu](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "New IC Menu")
+![New IC Menu](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/002b0e0a0307b4f09057f0d4bda3d73449075728/Images/New%20IC%20Chip%20Screen%20On%20Logigator.png "New IC Menu")
 
 Fill out Name and Symbol, and make sure you flip the Share Publicly switch so it’s red, like shown above. Then click Create. You should now see a screen like this:
 
-![IC Chip Main Screen](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "IC Chip Main Screen")
+![IC Chip Main Screen](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/002b0e0a0307b4f09057f0d4bda3d73449075728/Images/IC%20Editing%20Screen.png "IC Chip Main Screen")
 
 There will be a tab with the name of your IC chip (for me, it’s just IC Chip). Scroll down in the side bar until you see Input and Output plugs:
 
-![I/O Plugs](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/ab6a6b68f70642fe8158aaab21de44a28fcc2fd5/Images/Not%20Found.png "I/O Plugs")
+![I/O Plugs](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/002b0e0a0307b4f09057f0d4bda3d73449075728/Images/IC%20IO%20Plugs%20In%20Logigator.png "I/O Plugs")
