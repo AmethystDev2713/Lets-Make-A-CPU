@@ -1,5 +1,6 @@
 # Lets Make A CPU - by AmethystDev2713
-### Copyright Nov. 30, 2023 AmethystDev2713. All rights reserved, this ebook may not be copied, distributed, or used to make deriative guides/books/ebooks/newspapers/anything similar without a certificate of permission given by the copyright holder of this work, AmethystDev2713
+### Copyright (c) 2023 AmethystDev2713. This eBook is licensed under the Creative Commons Attribution-NoDerivatives 4.0 International License (CC-BY-ND 4.0). See [the license text](https://creativecommons.org/licenses/by-nd/4.0/legalcode.txt) for terms and conditions.
+Summary of terms: People are allowed and encouraged to read and learn from my eBook, use teachings to make their own, original works, and to share my eBook, unmodified, with other people while giving credit to me as the author.
 
 Have questions/comments/concerns? Post them [here](https://github.com/AmethystDev2713/Lets-Make-A-CPU/discussions/1)
 
@@ -15,10 +16,13 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 | Section 5: Constructing our CPU                      | What are the steps to build our CPU?                                                                                  |
 | 5.1: Register Loading/Multi Step Instructions        | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
 | 5.2: 3-Step Instructions/Add + Subtract Instructions | How do we make a 3-step instruction processor? How do CPUs add + subtract binary numbers?                             |
+| 5.3: Testing & Debugging                             | How do we check that our CPU is working? How to fix it if it isn't?                                                   |
+| Section 6: Continuing Development                    | What are other types of CPU operations and architectures? What are other, more practical ways to develop a CPU?       |
+| Conclusion                                           | What have we learned in this eBook?                                                                                   |
 
-**Note:** This is a very, very long ebook, and as such it will take a while to finish. What you are reading right now is an incomplete version. My ebook is updated 5/7 days a week unless said so otherwise. Most edits occur on weekdays between 8:00 AM and 5:00 PM EST
+**Note:** What you are reading right now is an incomplete version. My ebook was paused for almost 3 years due to loss of interest, but as of 7/3/2026, writing will be resumed and finished due to having curious viewers (thanks for your time!)
 
-**Edit status:** Occasional edits may occur
+**Edit status:** Occasional edits will occur, hoping to be complete by the end of this summer.
 
 ## Overview
 
