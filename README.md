@@ -17,14 +17,15 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 | 5.1: Register Loading/Multi Step Instructions        | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
 | 5.2: 3-Step Instructions/Add + Subtract Instructions | How do we make a 3-step instruction processor? How do CPUs add + subtract binary numbers?                             |
 | 5.3: Testing & Debugging                             | How do we check that our CPU is working? How to fix it if it isn't?                                                   |
+| 5.4: Running Programs                                | Now that we have a working CPU, how can we make it do real work?                                                      |
 | Section 6: Continuing Development                    | What are other types of CPU operations and architectures? What are other, more practical ways to develop a CPU?       |
 | Conclusion                                           | What have we learned in this eBook?                                                                                   |
 
 **Note:** What you are reading right now is an incomplete version. My ebook was paused for almost 3 years due to loss of interest, but as of 7/3/2026, writing will be resumed and finished due to having curious viewers (thanks for your time!)
 
-**Edit status:** Occasional edits will occur, hoping to be complete by the end of this summer.
+**Edit status:** Occasional edits will occur, hoping to complete it by the end of this summer.
 
-## Overview
+# Overview
 
 If you're anything like me, you are curious about the computer's inner workings. One of the most powerful and important components is called the Centeral Processing Unit, or CPU. It's basically the brain of the computer. As StoryBots puts it, a computer/CPU is 3 simple steps: Input, Processing, Output.
 
@@ -41,9 +42,9 @@ If you're anything like me, you are curious about the computer's inner workings.
 
 This is the basics of how a CPU works, but if you want to know more, I would highly recommend checking out [this video by In One Lesson on Youtube](https://www.youtube.com/watch?v=cNN_tTXABUA) which goes into deep detail on how a CPU works without using crazy language that the general public may not understand
 
-## Let's get started
+# Let's get started
 
-### Section 1: Logic Gates
+# Section 1: Logic Gates
 
 All CPUs at their heart are made up of one thing, the transistor
 
@@ -139,7 +140,7 @@ These gates, made from transistors, are the building blocks of every CPU. A good
 1. Unfortunatly, it's impossible to make private boards only you can see, so if you want to make private boards, I would suggest using [Logigator](https://logigator.com/), which allows you to export your logic boards to project files you can save and use later, therefore making your work private
 2. You can't use individual transistors in this simulator, only the logic gates and other integrated circuits (ICs) provided, such as adders, a binary decoder, etc.
 
-### Section 2: Areas of a CPU
+# Section 2: Areas of a CPU
 
 With out new knowledge of transistors and logic gates, we can talk about the 3 basic areas of a CPU, the Control Unit, ALU, and Registers
 
@@ -151,7 +152,7 @@ With out new knowledge of transistors and logic gates, we can talk about the 3 b
 
 The video by In One Lesson also goes into depth on how each of these are used in a CPU. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
 
-### Section 3: An intro to Binary
+# Section 3: An intro to Binary
 
 To better understand binary, we will be using the very famous 6502 8-Bit microprocessor (pronounced six-five-oh-two or sixtey five-oh-two, I personally prefer the first pronounciation), made by MOS Technology, and used in famous computers of its era, such as the Apple II and Commodore 64, as our example CPU for this section.
 
@@ -178,7 +179,7 @@ What this is showing is if the bit at a given place is 1, it takes the value und
 
 The bit at place 2 is set to 1, so one of out factors is 2. Same thing with place 16, so add 16 + 2, and the result of 00010010 converted to decimal is 18. Learning to convert binary to decimal can be helpful when developing your CPU since it's a crucial part of creating your instruction set
 
-### Section 4: Assembly & The Instruction Set
+# Section 4: Assembly & The Instruction Set
 
 Before you run away from the computer screaming upon hearing "assembly", we won't be using x86 or 64-Bit assembly to help learn about this topic or for examples, they're WAAY to complicated for our purposes. Instead, let's create our own varient for our CPU, which is very simple, like 6502 assembly. As we get better and better with CPU design and creation, only then can we scale up the complexity.
 
@@ -227,7 +228,7 @@ The left most column is the instruction in assembly, which is a special class of
 
 Here is the code explanation: Load the correct number into register A, which is 1001 in binary, or 9 in decimal. Get the user's guess with the IN instruction. Since it saves to register C, compare the correct answer (Register A) with the user's guess (Register C). If they are the same (meaning the user has guessed the correct number), skip the "guess again" message and jump to the "Correct! Good Job!" message to tell the user they guessed the correct number. If the 2 numbers are not equal, then the JMPX instruction will be ignored, since the user didn't guess the correct number, and will then show the "guess again" message and jump to the IN instruction to get the user's next guess. Of course, CPU's only understand 1s and 0s, so you will need to do a process called "interpreting" where you convert (or a program you made converts) the assembly code into 1s and 0s based off of your table. After you have 1s and 0s, your CPU will now be able to read your code! The only problem in this specific example is we are unable to interpret text into binary, since we have too few bits, as for with numbers, you can represent them as binary numbers 0000 - 1111, since this is a 4-Bit CPU example. In order for it to be actually interpreted, if you want, would be to replace "guess again" with 0 to indicate that the wrong number was guessed, and "Correct! Good Job!" with 1 to indicate that the correct number was guessed. Like I've mentioned before, if you want to make your CPU do more, you will have to increase your binary range to give more possible combinations of binary, representing more and more functions for the CPU to carry out.
 
-### Section 5: Constructing our CPU
+# Section 5: Constructing our CPU
 
 This is when logic gates come in. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see an instruction processor for each of the 4 instructions. Based on the instruction set I designed, I am going to show you how to make instruction processors for each of the functions. So, here’s how the process works *(please keep in mind this approach is NOT how any CPU was ever made, it's just a random method I made up which I thought was at least somewhat easy to understand, and is being used and shown for educational purposes)*:
 
@@ -251,7 +252,7 @@ This image was found on visual6502.org
 
 Or reading CPU manuals, which would be 100x worse than looking at those images.
 
-#### 5.1 Register Loading/Multi Step Instructions
+## 5.1 Register Loading/Multi Step Instructions
 
 There are many types of circuits you can make to carry out different functions, but listing all of them, even just for this CPU, would take ages. But I will show you 2 important types.
 The first type of instruction we are going to make a processor for is register loading instructions. This will show you how registers work and give you an intro to multi-step instructions, which will be very helpful especially if you are making a CPU with a small bit range. Let’s get into it.
@@ -325,7 +326,7 @@ These wires allow the instruction processor to lock the input wires and be locke
 
 Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
 
-#### 5.2: 3-Step Instructions/Add + Subtract Instructions
+## 5.2: 3-Step Instructions/Add + Subtract Instructions
 
 One of the functions of a CPU is to carry out arithmetic functions, mainly addition, subtraction, and comparisions. These functions are carried out by the CPU's ALU.
 
