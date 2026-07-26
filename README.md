@@ -135,10 +135,9 @@ These basic logic gates are used to form more complicated logic gates, such as t
 | 0        | 1        | 1      |
 | 1        | 1        | 0      |
 
-These gates, made from transistors, are the building blocks of every CPU. A good online software to start making your own logic boards is [simulator.io](https://simulator.io). I love using this logic gate simulator due to it being easy to learn how to use it (I would highly recommend checking out their [sample circuits](https://simulator.io/samples)). 2 Important notes about simulator.io:
+These gates, made from transistors, are the building blocks of every CPU.
 
-1. Unfortunatly, it's impossible to make private boards only you can see, so if you want to make private boards, I would suggest using [Logigator](https://logigator.com/), which allows you to export your logic boards to project files you can save and use later, therefore making your work private
-2. You can't use individual transistors in this simulator, only the logic gates and other integrated circuits (ICs) provided, such as adders, a binary decoder, etc.
+⚠️ To follow along with this eBook, you will need to use a logic simulator of some sort. The majority of this eBook uses [simulator.io](https://simulator.io). However, use of this simulator is **no longer recommended** because it is no longer fully functional. Simulator.io was functional back when this eBook was started in 2023, but now is likely abandoned by its developer. As such, you should use another simulator like [Logigator](https://logigator.com/).
 
 # Section 2: Areas of a CPU
 
