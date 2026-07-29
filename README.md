@@ -259,7 +259,7 @@ There are many types of circuits you can make to carry out different functions. 
 
 This is a register using D Latches, which hold their current state until both the data pin is set to the needed value and a clock pulse is triggered.
 
-![Register Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0313285452e68f102b16071e7b28f23171c2d7dd/Images/Register%20Loading%20Mechanism.gif "Register Mechanism")
+![Register Mechanism](https://raw.githubusercontent.com/AmethystDev2713/Lets-Make-A-CPU/refs/heads/main/Images/Register%20Loading%20Mechanism.gif "Register Mechanism")
 
 That was a simple demo. A proper register is made up of with 3-4 parts:
 
