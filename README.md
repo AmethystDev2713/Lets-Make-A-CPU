@@ -11,9 +11,9 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 | Overview                                             | The basics of computers and CPUs                                                                                      |
 | Section 1: Logic Gates                               | Transistors and Logic Gates: The building blocks of CPUs                                                              |
 | Section 2: Areas of a CPU                            | What is the Control Unit, ALU, and Registers? What other parts are necessary to make a CPU work?                      |
-| Section 3: Intro to binary                           | What is binary and how does it work?                                                                                  |
+| Section 3: Intro to Binary                           | What is binary and how does it work?                                                                                  |
 | Section 4: Assembly & The Instruction Set            | What is the instruction set and what does it do?                                                                      |
-| Section 5: Constructing our CPU                      | What are the steps to build our CPU?                                                                                  |
+| Section 5: Constructing Our CPU                      | What are the steps to build our CPU?                                                                                  |
 | 5.1: Register Loading/Multi Step Instructions        | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
 | 5.2: 3-Step Instructions/Add + Subtract Instructions | How do we make a 3-step instruction processor? How do CPUs add + subtract binary numbers?                             |
 | 5.3: Testing & Debugging                             | How do we check that our CPU is working? How to fix it if it isn't?                                                   |
@@ -152,7 +152,7 @@ With out new knowledge of transistors and logic gates, we can talk about the 3 b
 
 The video by In One Lesson also goes into depth on how each of these are used in a CPU. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
 
-# Section 3: An intro to Binary
+# Section 3: Intro to Binary
 
 To better understand binary, we will be using the very famous 6502 8-Bit microprocessor (pronounced six-five-oh-two or sixtey five-oh-two, I personally prefer the first pronounciation), made by MOS Technology, and used in famous computers of its era, such as the Apple II and Commodore 64, as our example CPU for this section.
 
@@ -228,7 +228,7 @@ The left most column is the instruction in assembly, which is a special class of
 
 Here is the code explanation: Load the correct number into register A, which is 1001 in binary, or 9 in decimal. Get the user's guess with the IN instruction. Since it saves to register C, compare the correct answer (Register A) with the user's guess (Register C). If they are the same (meaning the user has guessed the correct number), skip the "guess again" message and jump to the "Correct! Good Job!" message to tell the user they guessed the correct number. If the 2 numbers are not equal, then the JMPX instruction will be ignored, since the user didn't guess the correct number, and will then show the "guess again" message and jump to the IN instruction to get the user's next guess. Of course, CPU's only understand 1s and 0s, so you will need to do a process called "interpreting" where you convert (or a program you made converts) the assembly code into 1s and 0s based off of your table. After you have 1s and 0s, your CPU will now be able to read your code! The only problem in this specific example is we are unable to interpret text into binary, since we have too few bits, as for with numbers, you can represent them as binary numbers 0000 - 1111, since this is a 4-Bit CPU example. In order for it to be actually interpreted, if you want, would be to replace "guess again" with 0 to indicate that the wrong number was guessed, and "Correct! Good Job!" with 1 to indicate that the correct number was guessed. Like I've mentioned before, if you want to make your CPU do more, you will have to increase your binary range to give more possible combinations of binary, representing more and more functions for the CPU to carry out.
 
-# Section 5: Constructing our CPU
+# Section 5: Constructing Our CPU
 
 This is when logic gates come in. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see an instruction processor for each of the 4 instructions. Based on the instruction set I designed, I am going to show you how to make instruction processors for each of the functions. So, here’s how the process works *(please keep in mind this approach is NOT how any CPU was ever made, it's just a random method I made up which I thought was at least somewhat easy to understand, and is being used and shown for educational purposes)*:
 
@@ -241,7 +241,7 @@ This is when logic gates come in. You can arrange all types of logic gates to ma
 In the examples above, you can see that only the specific binary combination to activate an instruction is inputted, only that instruction processor (the group of logic gates that do the instruction you want) will turn on, and it will lock the others to prevent them from accidentally turning on, until that instruction processor is done processing. For demonstration purposes, each "programmed" instruction with logic gates will turn on an LED to indicate that they are active and lock the other one. In a real CPU, in the place of the LEDs would be more logic gates to do whatever the designer wants the CPU to do.
 
 2. Set up (a lot) of logic gates to do what I want the CPU to do, whether it's a register, ALU, output functions, etc.
-3. Test the CPU. Just like programming in a language like C++ (my personal favorite), you have to test your code for bugs. Similarly, you have to test your logic circuit (set of logic gates which work together as a unit to perform a task) to make sure it's working the way it should be.
+3. Test the CPU. Just like programming in a language like C, you have to test your code for bugs. Similarly, you have to test your logic circuit (set of logic gates which work together as a unit to perform a task) to make sure it's working the way it should be.
 
 You can think of the process as this: Plan (this is what section 4 was about), Build, and Test, just as if you were building a robot, RC Car/Airplane, making a Lego set from your imagination, etc.
 
@@ -254,47 +254,49 @@ Or reading CPU manuals, which would be 100x worse than looking at those images.
 
 ## 5.1 Register Loading/Multi Step Instructions
 
-There are many types of circuits you can make to carry out different functions, but listing all of them, even just for this CPU, would take ages. But I will show you 2 important types.
-The first type of instruction we are going to make a processor for is register loading instructions. This will show you how registers work and give you an intro to multi-step instructions, which will be very helpful especially if you are making a CPU with a small bit range. Let’s get into it.
+### The Register
 
-This is a register using RS Latches (Reset-Set Latches) which will hold one state depending on whether the reset or set input is powered, even if it's temporary.
+There are many types of circuits you can make to carry out different functions. Starting with the essentials, the first type of instruction we are going to make a processor for is register loading instructions. After showing you how registers work, we will discuss multi-step instructions, which are instructions that can do work using multiple inputs. You need to be able to create them because almost every instruction you can make for your CPU will need multiple inputs. Let’s get into it.
+
+This is a register using D Latches, which hold their current state until both the data pin is set to the needed value and a clock pulse is triggered.
 
 ![Register Mechanism](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/0313285452e68f102b16071e7b28f23171c2d7dd/Images/Register%20Loading%20Mechanism.gif "Register Mechanism")
 
-Of course, this isn't the full picture, it's just a simple demonstration on how a register work.
+That was a simple demo. A proper register is made up of with 3-4 parts:
 
-A Register is made up of with 2 - 3 parts:
+1. Some form of memory or latch to save a value
+2. An Enable wire
+3. A Set wire
+4. Optionally, a reset wire
 
-1. Set
-2. Enable
-3. (usually merged with Set) Reset
-
-When I make a register, I usually merge set with reset, unless I am creating a demo register, like the one above. The Set Wire will allow a new value to be written to a register, after resetting it, of course. The Enable Wire allows the value of the register to be outputted onto some form of a bus, which is like a highway for cars, where the cars represent the binary data being sent to other components as needed. The Reset wire, which is usually triggered automatically when the set wire is turned on by a switch, clears the value of the register.
+Here is a better demo of a register:
 
 ![Full Register](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/835470354c518027120c3657ea114d827211dad5/Images/Full%20Register.png "Full Register")
 
-To combine the activation and register loading, we need a logic circuit which will lock the other instruction processors until we are ready to move on. D-Latches/Flip Flops are a really nice circuit which can do that. Unfortunately, they are sort of a complicated concept. You can check out simulator.io's D-Latch Sample Circuit to see it in action. Their Diode Matrix/Traffic Light Sample Circuit will be the best thing to look at in order to understand D-Latch counters. A counter is a circuit which will count up (or sometimes down) in binary to keep track of things like what instruction from memory needs to be processed now and next, and how many steps have been completed in a multi-step instruction. In our case, it will tick twice before giving an output, signaling the end of our two-step instruction.
+This one uses RS Latches (Reset-Set Latches). I'll be replacing this with one that uses D-Latches.
+
+### Multi Step Instruction Circuitry
+
+Register loading is a multi-step instruction: activate the instruction processor, give a value to load & save it, move on. Currently, we only have a register. We need a logic circuit which will lock the other instruction processors until we are ready to move on. That circuit is called a counter. As the name implies, it will count up (or down, depending on the design) in binary to keep track of things like what instruction from memory needs to be processed now and next, and how many steps have been completed in a multi-step instruction. In this design that uses a D Latch and a Flip Flop, it will tick twice before giving an output, signaling the end of our two-step instruction.
 
 ![2-Step Counter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/f58374b6782c4fbbe863eef5a279942a9a722981/Images/2-Step%20Counter.png "2-Step Counter")
 
 This is a 2-step counter which will reset itself on the second pulse, so you don’t have to worry about creating circuitry to handle resetting it.
 For a three-step instruction, you would make a circuit using 2 D-Latches and an AND gate.
 
-![3-Step Counter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/716e1df2bdd5bc489c1467facbddf73f2902e885/Images/3-Step%20Counter.gif "3-Step Counter")
-
-Just to note, a 4th pulse will be required to reset the counter.
-
-Surprisingly, D-Latch Circuits don't work in Logigator, so when I checked out their sample circuits to see how to make a counter with their simulator, I was very, very shocked to see that you can just use half adders, which are a circuit which can add 2, 1-Bit binary numbers. To make a counter using them, simply replace the D-Latches with Half-Adders and change the wiring a bit
+In Logigator, you will need to use half adders, which are a circuit which can add 2, 1-Bit binary numbers, to make a counter. Take a look below to see how.
 
 ![3-Step Counter Using Half Adders](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/64ecfaff2a5dc91221b93574346e0607ac36f22e/Images/3-Step%20Counter%20With%20Half%20Adders.gif "3-Step Counter Using Half Adders")
 
-This design also requires a 4th pulse to reset the counter.
+This is a 3 step counter, and requires a 4th pulse to reset the counter, just so you know.
 
-Fortunately, this design works in both Logigator AND Simulator.io (pun not intended), but there is the problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, so a counter could end up displaying a completely off-track binary number before displaying the correct one, so be careful when making counter. From my observations, this shouldn’t be an issue unless you are making an 8-step counter or higher step ones. Rest assured that it is possible to create a set of logic gates that will remove the time delay from the output. These kinds of counters which remove the time delay are called synchronous counters.
+If you ever make a high speed CPU, you might notice a problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, a counter could end up displaying a completely off-track binary number before displaying the correct one, so be careful when making counter. From my observations, this shouldn’t be an issue unless you are making a counter with more than 4 steps. Rest assured that it is possible to create a set of logic gates that will fix this time delay issue. These kinds of counters are called synchronous counters.
 
 Since instructions like these take multiple inputs/steps, we need to make sure we aren't accidentally triggering other instruction processors while one instruction is still running. Like mentioned before, you can use lockers to do this, which will unlock once the instruction processor is done processing.
 
 Now, we have 3 mechanisms, the counter, register, and the locker. But how does the register get input?
+
+## Our First Instruction Processor!
 
 First, the register needs to be reset on each instruction so the previous value is cleared and the new value/data can be saved. To do this, we add wires going to the data input wires, and another locker to make sure we are only saving data when the instruction is activated. To prevent the bit which activated the instruction from being saved, we use an AND gate with an inverted input (or a NOT gate on one of its inputs) which will allow data saving once there is no data coming in. This is where the entire instruction processor comes together (prepare yourself).
 
