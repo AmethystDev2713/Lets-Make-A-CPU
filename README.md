@@ -285,11 +285,11 @@ Register loading is a multi-step instruction: activate the instruction processor
 This is a 2-step counter which will reset itself on the second pulse, so you don’t have to worry about creating circuitry to handle resetting it.
 For a three-step instruction, you would make a circuit using 2 D-Latches and an AND gate.
 
-In Logigator, you will need to use half adders, which are a circuit which can add 2, 1-Bit binary numbers, to make a counter. Take a look below to see how.
+To make a 3-step counter, you will need to use half adders, which are a circuit which can add 2, 1-Bit binary numbers, to make a counter. Take a look below to see how.
 
 ![3-Step Counter Using Half Adders](Images/3-Step%20Counter%20With%20Half%20Adders.gif "3-Step Counter Using Half Adders")
 
-This is a 3 step counter, and requires a 4th pulse to reset the counter, just so you know.
+This design requires a 4th pulse to reset the counter, just so you know.
 
 If you ever make a high speed CPU, you might notice a problem of how fast the counter can switch between outputting different binary numbers, since there is a slight delay when switching between numbers, meaning it takes time for each bit to turn on and off, a counter could end up displaying a completely off-track binary number before displaying the correct one, so be careful when making counter. From my observations, this shouldn’t be an issue unless you are making a counter with more than 4 steps. Rest assured that it is possible to create a set of logic gates that will fix this time delay issue. These kinds of counters are called synchronous counters.
 
@@ -299,7 +299,7 @@ Now, we have 3 mechanisms, the counter, register, and the locker. Now the questi
 
 ## Our First Instruction Processor!
 
-Let's Build it together! Make sure you leave plenty of room to the left and above this so that we can add other components later on!
+Let's build it together! Make sure you leave plenty of room to the left and above this so that we can add other components later on!
 
 ![Simple Input Bus](Images/Simple%20Input%20Bus.png "Simple Input Bus")
 
