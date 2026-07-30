@@ -261,24 +261,25 @@ This is a register using D Latches, which hold their current state until both th
 
 ![Register Mechanism](https://raw.githubusercontent.com/AmethystDev2713/Lets-Make-A-CPU/refs/heads/main/Images/Register%20Loading%20Mechanism.gif "Register Mechanism")
 
-That was a simple demo. A proper register is made up of with 3-4 parts:
+That was a simple demo. A proper register is made up of with 4-5 parts:
 
 1. Some form of memory or latch to save a value
-2. An Enable wire
-3. A Set wire
-4. Optionally, a reset wire
+2. Value input lines
+3. An Enable wire
+4. A Set wire
+5. Optionally, a reset wire
 
 Here is a better demo of a register:
 
-![Full Register](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/835470354c518027120c3657ea114d827211dad5/Images/Full%20Register.png "Full Register")
+![Full Register](Images/Better%20Register.png "Full Register")
 
-This one uses RS Latches (Reset-Set Latches). I'll be replacing this with one that uses D-Latches.
+Here, the D Latches are the form of memory, the Bit switches + their wires are the value input lines the AND gates + the switch & wires going to their left side inputs are the Enable part, and the Set switch & its wires are the Set part. I did not make a reset part since there is a simpler way to reset the register: Save a 0 to it by setting the Bit switches off (representing a binary 0), and toggle the Set switch (turn it on and off. I could have used a button there, and then I'd just have to press it once to Set the register, but I have a habit of using switches).
 
 ### Multi Step Instruction Circuitry
 
 Register loading is a multi-step instruction: activate the instruction processor, give a value to load & save it, move on. Currently, we only have a register. We need a logic circuit which will lock the other instruction processors until we are ready to move on. That circuit is called a counter. As the name implies, it will count up (or down, depending on the design) in binary to keep track of things like what instruction from memory needs to be processed now and next, and how many steps have been completed in a multi-step instruction. In this design that uses a D Latch and a Flip Flop, it will tick twice before giving an output, signaling the end of our two-step instruction.
 
-![2-Step Counter](https://github.com/AmethystDev2713/Lets-Make-A-CPU/blob/f58374b6782c4fbbe863eef5a279942a9a722981/Images/2-Step%20Counter.png "2-Step Counter")
+![2-Step Counter](Images/2-Step%20Counter.png "2-Step Counter")
 
 This is a 2-step counter which will reset itself on the second pulse, so you don’t have to worry about creating circuitry to handle resetting it.
 For a three-step instruction, you would make a circuit using 2 D-Latches and an AND gate.
