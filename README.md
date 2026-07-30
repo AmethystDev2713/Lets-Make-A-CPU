@@ -299,33 +299,35 @@ Now, we have 3 mechanisms, the counter, register, and the locker. Now the questi
 
 ## Our First Instruction Processor!
 
-First, the register needs to be reset on each instruction so the previous value is cleared and the new value/data can be saved. To do this, we add wires going to the data input wires, and another locker to make sure we are only saving data when the instruction is activated. To prevent the bit which activated the instruction from being saved, we use an AND gate with an inverted input (or a NOT gate on one of its inputs) which will allow data saving once there is no data coming in. This is where the entire instruction processor comes together (prepare yourself).
+Let's Build it together! Make sure you leave plenty of room to the left and above this so that we can add other components later on!
 
-![Full Register Loading Mechanism](Images/Full%20Register%20Loading%20Mechanism.png "Full Register Loading Mechanism")
+![Simple Input Bus](Images/Simple%20Input%20Bus.png "Simple Input Bus")
 
-![Animation of full register loading mechanism](Images/Not%20Found.png "Animation of full register loading mechanism")
+To start, we need a way to simulate the instruction processor, and more that we add on, receiving input. We can do this using 4 input bit switches (this will result in a 4-Bit instruction processor. You can make it 8-Bit or more, but for simplicity's sake, we'll stick to 4 bits), AND gates + a button (or switch) to send the bits into the instruction processor, and long wires going down for instruction processors to branch off of. This is called a bus. What kind of bus? That depends on what will be transmitted on it. The most common types of busses are address and data busses. The one we are making right now is a data bus
 
-I know this may look a bit overwhelming, so lets break it down.
+![Instruction Checker](Images/Instruction%20Checker.png "Instruction Checker")
 
-![Instruction Checker](Images/Not%20Found.png "Instruction Checker")
+The first part of the actual instruction processor is the instruction checker, which checks to see if the specific binary number to activate the instruction processor has been inputted. If the specific number is being inputted, and the instruction checker is not locked, it will give an output to signal the beginning of the instruction.
 
-We start with an instruction checker, which checks to see if the specific binary number to activate the instruction processor has been inputted. If the specific combination is being inputted, and the instruction checker is not locked, it will give an output.
+This part uses an AND gate, a delay gate (labeled with a 1 for a 1 tick delay), and NOT gates. Using a combination & specific arrangement of delay and NOT gates, you can make the AND gate turn on only when the binary number to activate the instruction processor has been inputted.
+
+What you see in the image is an arrangement to detect the binary number 0001 for activating: The top input of the AND gate is connected to a delay gate, which shows that Bit 0, since it is connected to the data bus wire for Bit 0, must be 1. The rest of the inputs of the AND gate are connected to NOT gates, showing that Bits 1-3 must be 0. With the combination of 0001, this instruction processor will activate.
 
 ![Instruction Running Flag](Images/Not%20Found.png "Instruction Running Flag")
 
-Next, we have the instruction running flag, which will stay on until a number has been inputted, and then the input is turned off.
+The instruction beginning signal needs to be stored. The instruction running flag will do that and will stay on until a number has been inputted to be saved to the register, and then will turn off, signaling the end of the instruction.
 
 ![Counter Mechanism](Images/Not%20Found.png "Counter Mechanism")
 
-After that, we need to be able to tell when the instruction starts, when a number is inputted, and when the input wires turn off. When they do, the counter mechanism will output the “done” signal and resetting the flag and counter.
+After that, we need to be able to tell what step of the instruction we are in. Register loading is a 2 step instruction: Start instruction, load value, end. Ending is not a step we need to account for in our instruction processor's step count as it will automatically happen when 2 steps have been complete. The flag and counter will be reset once the end is reached.
+
+![Instruction Processor Lockers](Images/Not%20Found.png "Instruction Processor Lockers")
+
+Then, we need to lock other instruction processors from activating while the active one is processing. These wires allow the instruction processor to lock the input wires and be locked. The one off to the left allows other instruction processors to lock it, and at the bottom is a locker preventing data from going to the second and rest of the instruction processors. **Important:** This mechanism only works for the first instruction processor. For all others, you will need to use a locker wire like the one I showed, which is to the left.
 
 ![Register Reset + Load](Images/Not%20Found.png "Register Reset + Load")
 
 These logic gates are what actually control register loading. When the instruction running flag is on, it will unlock the loading wires and reset the register so a new value can be saved.
-
-![Instruction Processor Lockers](Images/Not%20Found.png "Instruction Processor Lockers")
-
-These wires allow the instruction processor to lock the input wires and be locked. The one off to the left allows other instruction processors to lock it, and at the bottom is a locker preventing data from going to the second and rest of the instruction processors. **Important:** This mechanism only works for the first instruction processor. For all others, you will need to use a locker wire like the one I showed, which is to the left.
 
 Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
 
