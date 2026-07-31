@@ -17,7 +17,7 @@ Have questions/comments/concerns? Post them [here](https://github.com/AmethystDe
 | 5.1: Register Loading/Multi Step Instructions        | How do we make a register instruction processor? How do we avoid error when making multi-step instruction processors? |
 | 5.2: 3-Step Instructions/Add + Subtract Instructions | How do we make a 3-step instruction processor? How do CPUs add + subtract binary numbers?                             |
 | 5.3: Testing & Debugging                             | How do we check that our CPU is working? How to fix it if it isn't?                                                   |
-| 5.4: Running Programs                                | Now that we have a working CPU, how can we make it do real work?                                                      |
+| 5.4: Running Programs                                | Now that we have a working CPU, we need to add surrounding hardware so that it can run programs. How can we do this?  |
 | Section 6: Continuing Development                    | What are other types of CPU operations and architectures? What are other, more practical ways to develop a CPU?       |
 | Conclusion                                           | What have we learned in this eBook?                                                                                   |
 
@@ -40,7 +40,7 @@ If you're anything like me, you are curious about the computer's inner workings.
 
 **Output:** There may not always be output to the user of the computer. Sometimes there is and sometimes there is not. For example, if a person who writes in the language of computers to create what are called programs, a set of instructions to tell the computer what to do without having to be rewritten every time, and is usually saved to storage, more commonly refered to as a programmer, decides to make a calculator program, and the user wants to know what is 35 * 7, the program will output the answer when it is done processing. An example of no output might be a two-step calculation, such as (35 * 7) - 26. In this kind of a calculation, you won't see the answer of 35 * 7 and the subtraction of 26, you will only see the final result, not both numbers. Think of how confused people would be if that was the case if someone made a quadratic formula solver! Numbers upon numbers we would see...
 
-This eBook will teach you the basics of how a CPU works, and guide you to building your own CPU using logic gates to make input lines, instruction processors, and output lines. Instruction Processor Architecture (IPA) and instruction processors are **not** an industry standard for creating CPUs, they are an idea of the author of this eBook that is simple and will result in a functional CPU. If you want to learn more about how CPUs work, I would highly recommend checking out [this video by In One Lesson on Youtube](https://www.youtube.com/watch?v=cNN_tTXABUA) which goes into deep detail on how a CPU works without using technical language that the general public may not understand. Doing your own research is also a great way to learn more.
+This eBook will teach you the basics of how a CPU works, and guide you to building your own CPU using logic gates to make input lines, instruction processors, and output lines. **Instruction Processor Architecture (IPA) and instruction processors are NOT an industry standard for creating CPUs, they are an idea of the author of this eBook that is simple, easily teachable, and will result in a functional CPU.** If you want to learn more about how CPUs work, I would highly recommend checking out [this video by In One Lesson on Youtube](https://www.youtube.com/watch?v=cNN_tTXABUA) which goes into deep detail on how a CPU works without using technical language that the general public may not understand. Doing your own research is also a great way to learn more.
 
 # Let's get started
 
@@ -188,48 +188,58 @@ Just like numbers are represented in binary, you can "program" your CPU, so to s
    - What is your CPU going to be like? Is it going to be super simple (like my [3-Bit CPU](https://simulator.io/board/C2geCb4c2j), if you can even call it a CPU) and only adds and subtracts numbers? Is it going to be designed for use in mechanical contraptions, like a loom machine? Maybe for robots? Perhaps for a computer, which is the most common use for a CPU. Depending on the use, you can conclude what kind of instructions it should have
    - What will its binary range be? Will it be 4-Bit (I would recommend this as your minimum if you are making a CPU to actually do something useful) like the world's first CPU, the Intel 4004? 8-Bit, like the 6502 or Z80? 16-bit, like the 65816 or Motorola 68000 series? The more funtionality you want, the higher your binary range should be.
 - Drafting
-   - Your CPU should, at minimum, have the following types of fundamental instructions:
+   - Decide on what components and how many of each will be in your CPU (Except for data sending wires because every CPU needs those, and the types and number of logic gates you plan to use. Seriously, *please* don't estimate how many of each gate you'll use, that would give you a headache). At a minimum, you need the following:
+      - 3 Registers (2 for data; 1 for status, as in was there an error in the last instruction? Did it succeed? Were the two numbers we compared equal? The answers to those questions are statuses).
+      - A Program Counter, which will tell the CPU where is the next place in ROM to get the next instruction or data from.
+      - 1 input method (such as wires to read from RAM or ROM)
+      - 1 output method (can go to the same place as your input method if you're using RAM, which can be used as input and a place to store output).
+      - 1 math and/or compare unit (you can't get far with your CPU if it can't use or process input!)
+   - Decide on types. Your CPU should, at minimum, have the following types of fundamental instructions:
       - Load instructions, which can write values to registers or read data from RAM or ROM and save it to a register
       - Compare instructions, which are basically inequality operations. These can be used in things as simple as a number guessing game to an OS (Operating System, such as Windows, Macintosh/Mac, Linux, etc) for your CPU
       - Input Instructions, which can take the user's input for something like a number guessing game
       - Output instructions, which can be as simple as turning on or off a set of LEDs or as complicated as outputting what's going on in a video game to the screen
-   - Aside from those 4, you can decide whatever else you want your computer to do! It's going to be your design, after all
-   - Create an instruction set table, such as this one:
+      - Aside from those 4, you can decide whatever else you want your computer to do! It's going to be your design, after all
+   - Draft your instruction set table, such as this one:
 
 | Instruction name | Binary form | Usage                                                                                      |
 |:-----------------|:-----------:|:-------------------------------------------------------------------------------------------|
 | LDA              | 0001        | Load a byte of data into register A                                                        |
 | LDB              | 0010        | Load a byte of data into register B                                                        |
-| LDC              | 0011        | Load a byte of data into register C                                                        |
-| CMPE             | 0100        | Check if the next 2 binary numbers following are equal to each other                       |
-| CMPN             | 0101        | Check if the next 2 binary numbers following are not equal to each other                   |
-| CMPG             | 0100        | Check if the next binary number following is greater than the next binary number           |
-| CMPL             | 0101        | Check if the next binary number following is less than the next binary number              |
-| IN               | 0110        | Get Input from the input device, saves to register C                                       |
-| OUT              | 0111        | Send output to an output device                                                            |
-| ADD              | 1000        | Adds the next 2 binary numbers, saves to register C                                        |
-| SUB              | 1001        | Subtracts the next 2 binary numbers, saves to register C                                   |
-| JMP              | 1010        | Jump to a line in code file                                                                |
-| JMPX             | 1011        | Jump to a line in code file if the previous comparision resulted in "true" as its result   |
-| RGA              | 1100        | Keyword: Used to use the value of register A with other instructions                       |
-| RGB              | 1101        | Keyword: Used to use the value of register B with other instructions                       |
-| RGC              | 1110        | Keyword: Used to use the value of register C with other instructions                       |
+| CAB              | 0011        | Copy data from register A to B                                                             |
+| CBA              | 0100        | Copy data from register B to A                                                             |
+| CEQ              | 0101        | Check if data in register A and B are equal. If so, load register C with 1. If not, load 0 |
+| CGt              | 0110        | Check if data in register A is greater than B. If so, load C with 2. If not, load 0        |
+| CLT              | 0111        | Check if data in register A is less than register B. If so, load C with 4. If not, load 0  |
+| IN               | 1000        | Get input from an input port, saves to register A                                          |
+| OUT              | 1001        | Send data in register A to an output port                                                  |
+| ADD              | 1010        | Add A and B, saves result to A. If overflow, load C with 5. If not, load 0                 |
+| SUB              | 1011        | Subtract B from A, saves to A. If underflow, load C with 6. If not, load 0                 |
+| JMP              | 1100        | Jump to an instruction somewhere in the program                                            |
+| JMPX             | 1101        | Jump to an instruction if the previous instruction caused C to not be 0 (e.g. A = B)       |
 
-The left most column is the instruction in assembly, which is a special class of programming language called machine language, or machine code, because these instructions carry out operations exactly like the CPU does and grant the user full access to the CPU. This is generally only used by experienced computer workers, but in our case, where we are making our own CPU and assembly code for it, we don't need a professional or highly experienced user to do the work, since it's your very own variation of assembly, designed for your CPU. The middle column shows the instruction in binary, which is how your CPU will read it, and the right most column, well, explains it. As simple as these seem, you can already make simple programs, and maybe even find uses nobody ever knew about when using mutiple different instructions together! Here's a code example for a number guessing game using the assembly table above:
+The left most column is the instruction in assembly, which is a special class of programming language called machine language, or machine code, because these instructions carry out operations exactly like the CPU does and grant the user full access to the CPU. This is generally only used by experienced computer workers, but in our case, where we are making our own CPU and assembly code for it, we don't need a professional or highly experienced user to do the work, since it's your very own variation of assembly, designed for your CPU. The middle column shows the instruction in binary, which is how your CPU will read it, and the right most column, well, explains it. As simple as these seem, you can already make simple programs, and maybe even find uses nobody ever knew about when using mutiple different instructions together! Here's a code example for a number guessing game using the assembly table above (Note that in assembly, a semicolon is the standard way of putting a comment in your code):
 
-1. `LDA 1001`
-2. `IN`
-3. `CMPE RGA RGC`
-4. `JMPX 7`
-5. `OUT Guess again`
-6. `JMP 2`
-7. `OUT Correct! Good Job!`
+```asm
+1. LDB 7   ; Load Register B with 7
+2. IN 0    ; Input user's guess from Port 0
+3. CEQ     ; Compare if A = B (if user guessed correct)
+4. JMPX 8  ; Go to line 7 if user guessed correct. Otherwise, continue
+5. LDA 1   ; Load a 1 to send to the user to tell them that they guessed wrong
+6. OUT 0   ; Output 1 from A
+7. JMP 2   ; Jump back to the guessing part of the program to give the user another guess
+8. LDA 2   ; Load 2, indicating that the user guessed correctly
+9. OUT 0   ; Output 2 from A
+10. JMP 10 ; Start an infinite loop to effectively stop the program, now that the game is complete
+```
 
-Here is the code explanation: Load the correct number into register A, which is 1001 in binary, or 9 in decimal. Get the user's guess with the IN instruction. Since it saves to register C, compare the correct answer (Register A) with the user's guess (Register C). If they are the same (meaning the user has guessed the correct number), skip the "guess again" message and jump to the "Correct! Good Job!" message to tell the user they guessed the correct number. If the 2 numbers are not equal, then the JMPX instruction will be ignored, since the user didn't guess the correct number, and will then show the "guess again" message and jump to the IN instruction to get the user's next guess. Of course, CPU's only understand 1s and 0s, so you will need to do a process called "interpreting" where you convert (or a program you made converts) the assembly code into 1s and 0s based off of your table. After you have 1s and 0s, your CPU will now be able to read your code! The only problem in this specific example is we are unable to interpret text into binary, since we have too few bits, as for with numbers, you can represent them as binary numbers 0000 - 1111, since this is a 4-Bit CPU example. In order for it to be actually interpreted, if you want, would be to replace "guess again" with 0 to indicate that the wrong number was guessed, and "Correct! Good Job!" with 1 to indicate that the correct number was guessed. Like I've mentioned before, if you want to make your CPU do more, you will have to increase your binary range to give more possible combinations of binary, representing more and more functions for the CPU to carry out.
+Like I've mentioned before, if you want to make your CPU do more, you will have to increase your binary range to give more possible combinations of binary, representing more and more functions for the CPU to carry out.
+
+Once your CPU is built and working, you'll need to setup the hardware that surrounds it. If you don't, you'll have an input port that gets nothing resulting in the CPU not knowing what to do, and an output port that outputs nothing for the same reason! We'll get to this later in the eBook, but for now, it's time.
 
 # Section 5: Constructing Our CPU
 
-This is when logic gates come in. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see an instruction processor for each of the 4 instructions. Based on the instruction set I designed, I am going to show you how to make instruction processors for each of the functions. So, here’s how the process works *(please keep in mind this approach is NOT how any CPU was ever made, it's just a random method I made up which I thought was at least somewhat easy to understand, and is being used and shown for educational purposes)*:
+This is when logic gates and the instruction set we made earlier come together. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see an instruction processor for each of the 4 instructions. Let's begin the creation of our CPU and its instruction processors for the instruction set above.
 
 1. Create a part to check if a certain binary combination has been inputted. This can usually be done with an AND gate with as many inputs as the binary range is. For example, If you look at the first instruction processor on my example CPU, you can see some of the inputs are inverted to ensure that only a very specific combination of binary will allow the instruction to start processing. Another important part of this step is to create a locking mechanism, so that the CPU doesn't get confused on which bytes are for each instruction. Here's a diagram on Simulator.io:
 
