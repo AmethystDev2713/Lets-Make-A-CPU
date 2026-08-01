@@ -194,7 +194,7 @@ Just like numbers are represented in binary, you can "program" your CPU, so to s
       - 1 input method (such as wires to read from RAM or ROM)
       - 1 output method (can go to the same place as your input method if you're using RAM, which can be used as input and a place to store output).
       - 1 math and/or compare unit (you can't get far with your CPU if it can't use or process input!)
-   - Decide on types. Your CPU should, at minimum, have the following types of fundamental instructions:
+   - Decide on instruction types. Your CPU should, at minimum, have the following types of fundamental instructions:
       - Load instructions, which can write values to registers or read data from RAM or ROM and save it to a register
       - Compare instructions, which are basically inequality operations. These can be used in things as simple as a number guessing game to an OS (Operating System, such as Windows, Macintosh/Mac, Linux, etc) for your CPU
       - Input Instructions, which can take the user's input for something like a number guessing game
@@ -309,7 +309,7 @@ Now, we have 3 mechanisms, the counter, register, and the locker. Now the questi
 
 ## Our First Instruction Processor!
 
-Let's build it together! Make sure you leave plenty of room to the left and above this so that we can add other components later on!
+Let's build together! We'll base our instruction processors based on the instruction table we made in Section 4, starting with LDA. Make sure you leave plenty of room to the left and above this so that we can add other components later on!
 
 ![Simple Input Bus](Images/Simple%20Input%20Bus.png "Simple Input Bus")
 
@@ -323,23 +323,43 @@ This part uses an AND gate, a delay gate (labeled with a 1 for a 1 tick delay), 
 
 What you see in the image is an arrangement to detect the binary number 0001 for activating: The top input of the AND gate is connected to a delay gate, which shows that Bit 0, since it is connected to the data bus wire for Bit 0, must be 1. The rest of the inputs of the AND gate are connected to NOT gates, showing that Bits 1-3 must be 0. With the combination of 0001, this instruction processor will activate.
 
-![Instruction Running Flag](Images/Not%20Found.png "Instruction Running Flag")
+![First Instruction Processor Locker](Images/First%20Instruction%20Processor%20Locker.png "First Instruction Processor Locker")
 
-The instruction beginning signal needs to be stored. The instruction running flag will do that and will stay on until a number has been inputted to be saved to the register, and then will turn off, signaling the end of the instruction.
+Next, we need to lock other instruction processors from activating while the active one is processing. Since this is the first instruction processor, we can use this locker mechanism which prevents data from going to the second and rest of the instruction processors. **Do not use this mechanism for following instruction processors, as it can only lock instruction processors that come after it.** For all others, you will need to use a locker wire which all other instruction processors can connect to. This will be shown later in the eBook.
+
+We use a NOT gate on the locker wire so that it is unlocked by default, only locking when the first instruction processor activates.
+
+![Instruction Processor Locking Mechanism](Images/Instruction%20Processor%20Locking%20Mechanism.png "Instruction Processor Locking Mechanism")
+
+There are two parts to the Locking Mechanism: The first is that comically long OR gate labeled Locking Wires. Since we have 13 instructions in Section 4's instruction set, the OR gate has 12 inputs (an instruction processor shouldn't lock itself, hence having 1 less input than the number of instructions). Each of the other 12 instruction processors' locker wires will attach to one input of the OR gate. If any one of them turns on, it'll lock our instruction processor from running, as intended. Once none of them are locking our instruction processor, it is unlocked.
+
+The way locking actually works is in the part labeled Locking Mechanism. You can see that there is a NOT gate which has its input attached to the output of the OR gate, and the output of the NOT gate is attached to an AND gate. Since an AND gate will turn on when both inputs are on, the other input being connected to the instruction checker, we are creating the logic scenario "If instruction checker is on, and locking wires are off, activate instruction processor". This is how we ensure that only 1 instruction processor runs at a time.
+
+To reiterate, a locker wire will allow our instruction processor to lock others, and a locking wire will allow other instruction processors to lock ours.
+
+![Incorrect Instruction Running Flag](Images/Incorrect%20Instruction%20Running%20Flag.png "Incorrect Instruction Running Flag")
+
+Now, we could set up our Instruction Running Flag similarly to how we setted up the second D Latch in our 2-Step counter. But there's a problem: The instruction activation signal will only last for one tick (a tick is the unit of time in Logigator, and the speed that the simulation runs at is in the unit Hertz (Hz), or ticks per second), and because of the delay gate, the CLK input will activate after the D input's signal faded, because it's a delay! You may wonder why use the delay at all. The answer is because the delay acts as a diode, a circuit component that only lets a signal go through one way. We need this because the bottom wire attached to the delay gate is our reset wire. If there was just a wire there instead of a delay gate, the reset wire's signal would go to the D input as well since signals can go in both directions on wires, causing the reset signal to act as a set signal, which we wouldn't want.
+
+To solve this issue, add another delay like so:
+
+![Correct Instruction Running Flag](Images/Correct%20Instruction%20Running%20Flag.png "Correct Instruction Running Flag")
+
+Now both parts of the set signal will arrive to the inputs D and CLK at the same time, and we still have our initial delay gate acting as a diode.
+
+Now that we have a functioning flag, the instruction beginning signal will be stored there and will stay on until a number has been inputted to be saved to the register, and then will be reset by a part in the instruction processor, signaling the end of the instruction.
 
 ![Counter Mechanism](Images/Not%20Found.png "Counter Mechanism")
 
 After that, we need to be able to tell what step of the instruction we are in. Register loading is a 2 step instruction: Start instruction, load value, end. Ending is not a step we need to account for in our instruction processor's step count as it will automatically happen when 2 steps have been complete. The flag and counter will be reset once the end is reached.
 
-![Instruction Processor Lockers](Images/Not%20Found.png "Instruction Processor Lockers")
-
-Then, we need to lock other instruction processors from activating while the active one is processing. These wires allow the instruction processor to lock the input wires and be locked. The one off to the left allows other instruction processors to lock it, and at the bottom is a locker preventing data from going to the second and rest of the instruction processors. **Important:** This mechanism only works for the first instruction processor. For all others, you will need to use a locker wire like the one I showed, which is to the left.
-
 ![Register Reset + Load](Images/Not%20Found.png "Register Reset + Load")
 
 These logic gates are what actually control register loading. When the instruction running flag is on, it will unlock the loading wires and reset the register so a new value can be saved.
 
-Hopefully with that explanation, the register loading mechanism makes more sense. Whether the instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
+### Reflection
+
+Whether an instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
 
 ## 5.2: 3-Step Instructions/Add + Subtract Instructions
 
