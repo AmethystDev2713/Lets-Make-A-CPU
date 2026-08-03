@@ -347,19 +347,43 @@ To solve this issue, add another delay like so:
 
 Now both parts of the set signal will arrive to the inputs D and CLK at the same time, and we still have our initial delay gate acting as a diode.
 
-Now that we have a functioning flag, the instruction beginning signal will be stored there and will stay on until a number has been inputted to be saved to the register, and then will be reset by a part in the instruction processor, signaling the end of the instruction.
+With a functioning flag, the instruction beginning signal will be stored there and will stay on until a number has been inputted to be saved to the register, and then will be reset by a part in the instruction processor, signaling the end of the instruction.
 
-![Counter Mechanism](Images/Not%20Found.png "Counter Mechanism")
+![Counter Mechanism](Images/Counter%20Mechanism.png "Counter Mechanism")
 
 After that, we need to be able to tell what step of the instruction we are in. Register loading is a 2 step instruction: Start instruction, load value, end. Ending is not a step we need to account for in our instruction processor's step count as it will automatically happen when 2 steps have been complete. The flag and counter will be reset once the end is reached.
 
-![Register Reset + Load](Images/Not%20Found.png "Register Reset + Load")
+Since start counts as a step, we need to wire the pulse from the locking mechanism's output to the counter, similar to how we did with the instruction running flag. We want to intentionally send the pulse instead of wiring the Instruction Running Flag to the counter so that the counter doesn't stay stuck on due to the instruction running flag staying on.
 
-These logic gates are what actually control register loading. When the instruction running flag is on, it will unlock the loading wires and reset the register so a new value can be saved.
+### Progress Check
+
+There are a few extra wires we need to add to make sure this instruction processor works due to some problems I encountered while building this register. This would also be a good place to do a progress check, so let's take a look:
+
+![Register Progress Check 1](Images/Register%20Progress%20Check%201.png "Register Progress Check 1")
+
+There are three things to address here, the wire going from the Locking Mechanism's output to the Counter input, the Internal Locking Wire, and the Data Ready Wire.
+
+1. As stated before, the wire that goes from the Locking Mechanism's output, the output of the AND gate, to the counter input provides the pulse to update the counter to say "We've started. We're now waiting for data"
+2. The Internal Locking Wire is something I discovered we need while I was building the counter. **Problem:** If you try to run the instruction LDA 1, or 0001 0001 in binary, it'll make the Instruction Checker activate twice since 0001 is what its looking for. This will cause the rest of what we have so far to activate as well, eventually reaching the counter, pulsing it again and causing it to end the instruction because it was pulsed for the second time. **Solution:** We could just let it be and hope that the extra pulse doesn't reach the counter before data is saved to the register, which would cause the instruction to fail. But I'd like to take the safer route, which is wiring the Instruction Running Flag's output to the Locking Mechanism, specifically to the wire that already runs to the NOT gate in the Locking Mechanism. This will have the same effect as another instruction processor setting one of the inputs of the Locking Wires on.
+3. There is another data problem, somewhat similar to LDA 1, which we solved above. **Problem:** What if we want to do LDA 0? 0 would cause all data wires to be off when data is sent by pressing the button up where the bit switches are, and the instruction processor wouldn't be able to tell that a 0 was inputted vs. nothing being inputted, and now the processor is frozen, in a way. **Solution:** Bring a wire down that's connected to the button to act as an input for when data is ready, labeled Data Ready Wire. It isn't wired to anything right now since we haven't gotten to that point in building the Instruction Processor yet, but it will be useful when we build the register and the loading mechanism.
+
+Now that we've cleared up the three critical issues, let's proceed with the build.
+
+![Register A](Images/Register%20A.png "Register A")
+
+Meet Register A! Each bit is saved in a D latch, where input D is where you give the bit you want to write, and CLK is the Set signal. We use a Set wire connected to all the CLK inputs so that the input bits all save at once. Activating it will save the bit that is in input D to the latch. Lining up 4 of them gives us a 4-Bit register. Output Q is where the saved bit will be outputted from the latch. The AND gates above the register and the Enable wire ensures that the register will only output its value when we want to use it.
+
+![Where to put Register A](Images/Where%20to%20put%20Register%20A.png "Where to put Register A")
+
+Make sure to place Register A a little far away and above the instruction processor, as it needs space for more circuitry and other instruction processors/components to connect to. Remember that registers hold data that will be used in future instructions, so it's important to design them to be easily accessible, not cramped closed to other circuitry.
+
+This subsection is still being developed. Check back for more writing here.
 
 ### Reflection
 
-Whether an instruction is 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
+Congratulations on building your first instruction processor! Now you know the flow of how instruction processors work. Whether it's 2-step or 4-step (like a register loading mechanism or a compare instruction, which might be like: Compare [operation] [value1] [value2]), an instruction processor follows these basic steps: Activation, processing, step counting, reset the instruction processor.
+
+Take a break if you want to, otherwise we've still got plenty of instruction processors to make for our CPU!
 
 ## 5.2: 3-Step Instructions/Add + Subtract Instructions
 
