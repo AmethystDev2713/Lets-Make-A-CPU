@@ -40,7 +40,7 @@ If you're anything like me, you are curious about the computer's inner workings.
 
 **Output:** There may not always be output to the user of the computer. Sometimes there is and sometimes there is not. For example, if a person who writes in the language of computers to create what are called programs, a set of instructions to tell the computer what to do without having to be rewritten every time, and is usually saved to storage, more commonly refered to as a programmer, decides to make a calculator program, and the user wants to know what is 35 * 7, the program will output the answer when it is done processing. An example of no output might be a two-step calculation, such as (35 * 7) - 26. In this kind of a calculation, you won't see the answer of 35 * 7 and the subtraction of 26, you will only see the final result, not both numbers. Think of how confused people would be if that was the case if someone made a quadratic formula solver! Numbers upon numbers we would see...
 
-This eBook will teach you the basics of how a CPU works, and guide you to building your own CPU using logic gates to make input lines, instruction processors, and output lines. **Instruction Processor Architecture (IPA) and instruction processors are NOT an industry standard for creating CPUs, they are an idea of the author of this eBook that is simple, easily teachable, and will result in a functional CPU.** If you want to learn more about how CPUs work, I would highly recommend checking out [this video by In One Lesson on Youtube](https://www.youtube.com/watch?v=cNN_tTXABUA) which goes into deep detail on how a CPU works without using technical language that the general public may not understand. Doing your own research is also a great way to learn more.
+This eBook will teach you the basics of how a CPU works, and guide you to building your own CPU using logic gates to make input lines, instruction processors, and output lines. **Instruction Processor Architecture (IPA) and instruction processors are NOT an industry standard for creating CPUs. They are an idea of the author of this eBook that is simple, easily teachable, and will result in a functional CPU.** If you want to learn about a more realistic, but still understandable architecture, I highly recommend checking out [this video by In One Lesson on Youtube](https://www.youtube.com/watch?v=cNN_tTXABUA). Note that the design discussed in the video is copyrighted by its original author, named in the video. Doing your own research is also a great way to learn more.
 
 # Let's get started
 
@@ -50,15 +50,15 @@ All CPUs at their heart are made up of one thing, the transistor
 
 ![Transistor](Images/Transistor.png "Transistor")
 
-This is an NPN Transistor. All these marvels of engineering are is simple switches. As you can see above, the Transistor has 3 legs or wires comming out of it, a base, collector, and emitter.
+This is an NPN Transistor. Transistors of any kind are electronically controlled switches. As you can see above, the Transistor has 3 legs or wires comming out of it, a base, collector, and emitter.
 
 **Base:** If a small amout of power/electricity is applied to this leg, the transistor turns on, and lets any current coming into the collector to flow out of the emitter
 
 **Collector:** This is the transistor's input. If the base is on, but there is no electricity coming from the collector, there will be no output through the emitter
 
-**Emitter:** This is the transistor's output. The only way to get output from a transistor is to have electricity flowing to the base, and the collector. Think of the base and collector as 2 people, and the emitter like a box which needs 2 people to lift it, signaling an output. If there is a single person, the box can’t be lifted. If both people are there, the box can be lifted, which translates to an output at the emitter of the transistor.
+**Emitter:** This is the transistor's output. The only way to get output from a transistor is to have electricity flowing to the base, and the collector. Think of the base and collector as 2 people, and the emitter like a box which needs 2 people to lift it, signaling an output. If there is a single person, the box can't be lifted. If both people are there, the box can be lifted, which translates to an output at the emitter of the transistor.
 
-While this might seem simple and useless, I'm about to explain why this invention is such a breakthrough, aside from it being it to operate at near the speed of light and being so simple that it can be manufactures to be so small, you need a microscope to see it. Seriously, the millions and even billions of transistors that make up a CPU, are only a few ATOMS wide! Isn't that incredible?
+While this might seem simple and useless, I'm about to explain why this invention is significant, aside from it being it to operate at near the speed of light and being so simple that it can be manufactures to be so small, you need a microscope to see it. Seriously, the millions and even billions of transistors that make up a CPU, are only a few ATOMS wide! Isn't that incredible?
 
 Anyways, the reason why transistors are 98% of the whole CPU, is because their bases, collectors, and emitters can be arranged in certain ways to make what are called "Logic Gates". They perform what are called Boolean operations, whose only two possible inputs and outputs are on and off. This is also explained better in the video by In One Lesson. Here are a few examples: AND, OR, NOT
 
@@ -141,15 +141,41 @@ These gates, made from transistors, are the building blocks of every CPU.
 
 # Section 2: Areas of a CPU
 
-With out new knowledge of transistors and logic gates, we can talk about the 3 basic areas of a CPU, the Control Unit, ALU, and Registers
+With our new knowledge of transistors and logic gates, we can talk about areas of a CPU. This can vary based on what architecture a CPU conforms to, but industry made CPUs have 3 basic areas (though these are NOT the only areas): the Control Unit, ALU, and Registers.
+
+## Industry Standard
 
 **Control Unit:** This is the brain of the CPU, which tells the ALU and Registers to do. It's job is to process most instructions, control registers, and work with the ALU. The control unit can process all instructions except for arthematic and comparision instructions. Those two types of instructions are processed by the ALU.
 
-**ALU (Arthematic Logic Unit):** This area of the CPU basically does math and inequality instructions
+**ALU (Arthematic Logic Unit):** This area of the CPU basically does math and comparision instructions.
 
-**Registers:** This are little storage spaces which store a byte or a few bytes of data that the CPU needs to access repetitivly and quickly
+**Registers:** This are little storage spaces which store a byte or a few bytes of data. They are used by the CPU for storing numbers for the ALU to process, to hold the result of an ALU operation, to be compared against one another, to hold data that needs to be outputted eventually, etc.
 
 The video by In One Lesson also goes into depth on how each of these are used in a CPU. In short, the control unit is the brain of the CPU, the ALU does math operations, and the Registers are temporary, quick access storage places inside the CPU. Each of these areas are made with logic gates to carry out instructions that the creator wants it to.
+
+Don't feel like you are requried to follow this architecture, that's the beauty of computer science and engineering: given concepts and materials, what can you create? While I, the author, personally believe every CPU needs registers regardless of architecture, maybe you'll find a better alternative and put that in your CPU!
+
+## IPA Standard
+
+As highlighted in the overview, we'll be using a non standard architecture to teach how CPUs work and how to make one. The areas of a CPU in Instruction Processor Architecture will be discussed below, but construction and images of an IPA CPU will be shown in Section 5.
+
+**Input Stage:** Whether this is connected to an actual memory device or switches for building & debugging purposes, an IPA CPU starts its work with wires & a set of AND gates that feed instructions into the CPU.
+
+**Data Bus:** This is a set of wires that come off of the input stage and run inside the CPU, carrying the instructions fed to all the Instruction Processors.
+
+**Instruction Processor:** The fun part. These are units that execute one instruction when they are activated by their corresponding instruction being sent in the Data Bus. You can build as many as you want as long as you have sufficient Locker and Locking Wires.
+
+**Locker and Locking Wires:** Besides the Input Stage, this is the main control method in an IPA CPU. Locker wires activate when an Instruction Processor is activated, and lock all other instruction processors, preventing them from activating until the current instruction is completed. Locking Wires are what Locker Wires connect to in order to lock an instruction processor. Every Instruction Processor has one Locker Wire and one or more Locking Wires, depending on how many other instruction processors exist.
+
+**Registers:** Same as a standard architecture.
+
+This is all you need to get a functioning IPA CPU. If you want it to be able to run on its own (without you having to manually input instructions and look for where outputs are internally saved), add these components:
+
+**Program Counter:** A special register that keeps track of what instruction needs to be processed next. If a Program Counter is included in your IPA CPU, it must have an Output Port that only it connects to so that it can get instructions from a memory device. This is useful only when you have a memory device attached to your CPU with instructions in it and your CPU is running on its own.
+
+**Output Ports:** A set of wires that the CPU outputs data to as instructions or the Program Counter are designed to. These will only show data for one unit of time due to the nature of logic simulators. If you want them to be saved somewhere outside the CPU, you'll have to make a latch or some kind of data saver and displayer that connects to the port. Output Ports will have data wires for the actual output and a Data Ready wire that pulses once data is ready to be saved. Again, the pulse will last one unit of time.
+
+**Input Ports:** The Input Stage is a special type of input port that can only connect to the output of the memory device that the Program Counter is connected to so that the CPU can receive instructions. Other input ports are usable at the instructions' discretion. They have data wires for input from something else, like a keypad that you design and connect to the port, and a data ready input for when the data on the data wires can be read and saved internally.
 
 # Section 3: Intro to Binary
 
@@ -176,16 +202,16 @@ What this is showing is if the bit at a given place is 1, it takes the value und
 
 2. The same principle applies to larger binary numbers, like 16-Bit Binary Numbers.
 
-The bit at place 2 is set to 1, so one of out factors is 2. Same thing with place 16, so add 16 + 2, and the result of 00010010 converted to decimal is 18. Learning to convert binary to decimal can be helpful when developing your CPU since it's a crucial part of creating your instruction set
+The bit at place 2 is set to 1, so one of out factors is 2. Same thing with place 16, so add 16 + 2, and the result of 00010010 converted to decimal is 18. Learning to convert binary to decimal can be helpful when developing your CPU since Instruction Processors are activated using a binary input, and they may also output binary, in which case you have to know what your CPU or instructions running on it are trying to tell you!
 
 # Section 4: Assembly & The Instruction Set
 
 Before you run away from the computer screaming upon hearing "assembly", we won't be using x86 or 64-Bit assembly to help learn about this topic or for examples, they're WAAY to complicated for our purposes. Instead, let's create our own varient for our CPU, which is very simple, like 6502 assembly. As we get better and better with CPU design and creation, only then can we scale up the complexity.
 
-Just like numbers are represented in binary, you can "program" your CPU, so to speak, to accept certain combinations of binary bits as an instruction. Obviously, it's much harder to remember a binary number than an assembly instruction. Assembly is basically the CPU's language written in a form easily understantable by humans. The 6502 CPU's datasheet, and other CPU's datasheets (basically their manuel, **please** whatever you do, don't look up the Intel manuels. They will horrify and confuse you beyond the capacity of your brain), tell you what of its 50ish instructions are in hexadecimal, which is another numbering system, like binary, used in computing, where each bit has 16 possible combinations instead of 2, like with binary. But we won't get in depth with that since you're better off using binary when making a simple CPU. If you ever become smart enough and design your own 16-Bit, 32-Bit, or even 64-Bit CPU, which would be a SUPER impressive feat, you would rather write a hexadecimal number like 09D7 than a binary number like 0101010100111111, which is obviously very long. Anyways, here are the steps to designing your instruction set:
+Just like numbers are represented in binary, you can "program" your CPU, so to speak, to accept certain combinations of binary bits as an instruction. Obviously, it's much harder to remember a binary number than an assembly instruction. Assembly is basically the CPU's language written in a form easily understantable by humans. The 6502 CPU's datasheet, and other CPU's datasheets (basically their manual. Side note: **please** whatever you do, don't look up the Intel manuels. They are scary and wildly extensive), tell you what of its 50ish instructions are in hexadecimal, which is another numbering system, like binary, used in computing, where each bit has 16 possible combinations instead of 2, like with binary. But we won't get in depth with that since you're better off using binary when making a simple CPU. If you ever become smart enough and design your own 16-Bit, 32-Bit, or even 64-Bit CPU, which would be a SUPER impressive feat, you would rather write a hexadecimal number like 09D7 than a binary number like 0101010100111111, which is obviously very long. Anyways, here are the steps to designing your instruction set:
 
 - Planning.
-   - What is your CPU going to be like? Is it going to be super simple (like my [3-Bit CPU](https://simulator.io/board/C2geCb4c2j), if you can even call it a CPU) and only adds and subtracts numbers? Is it going to be designed for use in mechanical contraptions, like a loom machine? Maybe for robots? Perhaps for a computer, which is the most common use for a CPU. Depending on the use, you can conclude what kind of instructions it should have
+   - What is your CPU going to be like? Is it going to be super simple (like my [3-Bit CPU (simulator.io is broken here)](https://simulator.io/board/C2geCb4c2j), if you can even call it a CPU) and only adds and subtracts numbers? Is it going to be designed for use in mechanical contraptions, like a loom machine? Maybe for robots? Perhaps for a computer, which is the most common use for a CPU. Depending on the use, you can conclude what kind of instructions it should have
    - What will its binary range be? Will it be 4-Bit (I would recommend this as your minimum if you are making a CPU to actually do something useful) like the world's first CPU, the Intel 4004? 8-Bit, like the 6502 or Z80? 16-bit, like the 65816 or Motorola 68000 series? The more funtionality you want, the higher your binary range should be.
 - Drafting
    - Decide on what components and how many of each will be in your CPU (Except for data sending wires because every CPU needs those, and the types and number of logic gates you plan to use. Seriously, *please* don't estimate how many of each gate you'll use, that would give you a headache). At a minimum, you need the following:
@@ -239,7 +265,7 @@ Once your CPU is built and working, you'll need to setup the hardware that surro
 
 # Section 5: Constructing Our CPU
 
-This is when logic gates and the instruction set we made earlier come together. You can arrange all types of logic gates to make them do different functions. If you examine my CPU, you will see an instruction processor for each of the 4 instructions. Let's begin the creation of our CPU and its instruction processors for the instruction set above.
+This is when logic gates, the instruction set we made earlier , and Instruction Processor Architecture come together to make a CPU. You can arrange all types of logic gates to make them do different functions. My example CPU had an instruction processor for each of the 4 instructions. Let's begin the creation of our CPU and its instruction processors for the instruction set above.
 
 1. Create a part to check if a certain binary combination has been inputted. This can usually be done with an AND gate with as many inputs as the binary range is. For example, If you look at the first instruction processor on my example CPU, you can see some of the inputs are inverted to ensure that only a very specific combination of binary will allow the instruction to start processing. Another important part of this step is to create a locking mechanism, so that the CPU doesn't get confused on which bytes are for each instruction. Here's a diagram on Simulator.io:
 
@@ -266,7 +292,7 @@ Or reading CPU manuals, which would be 100x worse than looking at those images.
 
 ### The Register
 
-There are many types of circuits you can make to carry out different functions. Starting with the essentials, the first type of instruction we are going to make a processor for is register loading instructions. After showing you how registers work, we will discuss multi-step instructions, which are instructions that can do work using multiple inputs. You need to be able to create them because almost every instruction you can make for your CPU will need multiple inputs. Let’s get into it.
+There are many types of circuits you can make to carry out different functions. Starting with the essentials, the first type of instruction we are going to make a processor for is register loading instructions. After showing you how registers work, we will discuss multi-step instructions, which are instructions that can do work using multiple inputs. You need to be able to create them because almost every instruction you can make for your CPU will need multiple inputs. Let's get into it.
 
 This is a register using D Latches, which hold their current state until both the data pin is set to the needed value and a clock pulse is triggered.
 
@@ -313,7 +339,7 @@ Let's build together! We'll base our instruction processors based on the instruc
 
 ![Simple Input Bus](Images/Simple%20Input%20Bus.png "Simple Input Bus")
 
-To start, we need a way to simulate the instruction processor, and more that we add on, receiving input. We can do this using 4 input bit switches (this will result in a 4-Bit instruction processor. You can make it 8-Bit or more, but for simplicity's sake, we'll stick to 4 bits), AND gates + a button (or switch) to send the bits into the instruction processor, and long wires going down for instruction processors to branch off of. This is called a bus. What kind of bus? That depends on what will be transmitted on it. The most common types of busses are address and data busses. The one we are making right now is a data bus
+To start, we need a way to simulate the instruction processor, and more that we add on, receiving input. We can do this using 4 input bit switches (this will result in a 4-Bit instruction processor. You can make it 8-Bit or more, but for simplicity's sake, we'll stick to 4 bits), AND gates + a button (or switch) to send the bits into the instruction processor. That part is the Input Stage. From it, we'll add long wires going down for instruction processors to branch off of. This is called a bus. What kind of bus? That depends on what will be transmitted on it. The most common types of busses are address and data busses. The one we are making right now is the (main) Data Bus.
 
 ![Instruction Checker](Images/Instruction%20Checker.png "Instruction Checker")
 
